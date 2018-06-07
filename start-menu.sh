@@ -143,7 +143,6 @@ install_menu(){
             echo "You cancelled or have finished."
             ;;
 		esac
-        done
         ;;
 
 
