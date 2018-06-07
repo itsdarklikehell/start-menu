@@ -75,6 +75,7 @@ echo "options menu"
         echo "startup-menu updtate finished"
         use_whiptail="False"
         exit
+        start-menu
 		;;
         Exit)
 		echo "You cancelled or have finished."
