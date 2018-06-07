@@ -139,8 +139,7 @@ install_menu(){
 			use_whiptail="False"
 			exit
 			;;
-		esac
-    	done
+            esac
         ;;
         Custom)
 		echo "User selected: " $choice
