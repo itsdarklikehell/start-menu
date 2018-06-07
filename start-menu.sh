@@ -84,7 +84,7 @@ echo "options menu"
 		;;
         RetroPie-Setup)
 		echo "User selected: " $choice
-        sudo $HOME/RetroPie-Setup/retropie_setup.sh
+        sudo bash $HOME/RetroPie-Setup/retropie_setup.sh
         ;;
         Exit)
 		echo "You cancelled or have finished."
