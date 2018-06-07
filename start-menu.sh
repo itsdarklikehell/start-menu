@@ -117,7 +117,7 @@ install_menu(){
 		List)
 		echo "User selected: " $choice
         option_list
-		choice=$(whiptail --title "Install list" --checklist \
+		list_selection=$(whiptail --title "Install list" --checklist \
         "Choose an option:" 20 78 4 \
         "$option1" "$description1" ON \
         "$option2" "$description2" ON \
@@ -126,9 +126,7 @@ install_menu(){
         exitstatus=$?
 
         ;;
-
-
-		Custom)
+        Custom)
 		echo "User selected: " $choice
         custom=$(whiptail --inputbox "Please specify the package name to install:" 8 78 synaptic --title "Install Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
