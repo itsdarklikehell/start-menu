@@ -3,7 +3,7 @@
 
 config(){
 	use_whiptail="True"
-    WIP=echo "WORK IN PROGRESS, NOT YET IMPLEMENTED."
+    WIP="WORK IN PROGRESS, NOT YET IMPLEMENTED."
 }
 
 disclaimer(){
@@ -61,6 +61,8 @@ echo "options menu"
 	choice=$(whiptail --title "Option Menu" --menu "Choose an option" 25 78 16 \
 	"Update-System" "Update system." \
 	"Update-start-menu" "Update startup-menu." \
+    "Raspi-Config" "Configure raspbian." \
+    "RetroPie-setup" "Configure Retropie." \
     "Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
@@ -76,6 +78,14 @@ echo "options menu"
         use_whiptail="False"
         exit
 		;;
+        Raspi-Config)
+		echo "User selected: " $choice
+		sudo raspi-config
+		;;
+        RetroPie-Setup)
+		echo "User selected: " $choice
+        sudo $HOME/Retropie-Setup/retropie_setup.sh
+        ;;
         Exit)
 		echo "You cancelled or have finished."
 		use_whiptail="False"
