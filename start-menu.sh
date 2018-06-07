@@ -124,22 +124,7 @@ install_menu(){
 		"$option3" "$description3" ON \
         "Exit" "Exit back to CLI."3>&1 1>&2 2>&3)
         exitstatus=$?
-        case $choice in
-			$option1)
-            echo "Installing $option1"
-            sudo apt-get install $option1
-            ;;
-            $option2)
-            echo "Installing $option2"
-            sudo apt-get install $option2
-            ;;
-            $option3)
-            echo "Installing $option3"
-            sudo apt-get install $option3
-            ;;
-            *)
-            echo "You cancelled or have finished."
-            ;;
+
         ;;
 
 
