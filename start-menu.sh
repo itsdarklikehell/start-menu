@@ -62,7 +62,7 @@ echo "options menu"
 	"Update-System" "Update system." \
 	"Update-start-menu" "Update startup-menu." \
     "Raspi-Config" "Configure raspbian." \
-    "RetroPie-setup" "Configure Retropie." \
+    "RetroPie-Setup" "Configure Retropie." \
     "Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
