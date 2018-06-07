@@ -3,6 +3,7 @@
 
 config(){
 	use_whiptail="True"
+    WIP=echo "WORK IN PROGRESS, NOT YET IMPLEMENTED."
 }
 
 disclaimer(){
@@ -22,16 +23,21 @@ main_menu(){
 	choice=$(whiptail --title "Main Menu" --menu "Choose an option" 25 78 16 \
 	"Install" "Install tools." \
 	"Start" "Start tools." \
-	"Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
+    "Options" "Options and configuration." \
+    "Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
 		Install)
 		echo "User selected: " $choice
-		 install_menu
+		install_menu
 		;;
 		Start)
 		echo "User selected: " $choice
 		start_menu
+		;;
+        Options)
+		echo "User selected: " $choice
+		option_menu
 		;;
 		Exit)
 		echo "You cancelled or have finished."
@@ -47,13 +53,53 @@ main_menu(){
 	done ## menu end
 }
 
-install_menu(){
+option_menu(){
+echo "options menu"
+	## menu start
+    while [ $use_whiptail = True ]
+	do
+	choice=$(whiptail --title "Option Menu" --menu "Choose an option" 25 78 16 \
+	"Update System" "Update system." \
+	"Update startup-menu" "Update startup-menu." \
+    "Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
+	exitstatus=$?
+	case $choice in
+		Update System)
+		echo "User selected: " $choice
+		sudo apt-get update && sudo apt-get upgrade
+		;;
+		Update startup-menu)
+		echo "User selected: " $choice
+		cd $HOME/startup-menu
+        git pull
+        echo "startup-menu updtate finished"
+        use_whiptail="False"
+        exit
+		;;
+        Exit)
+		echo "You cancelled or have finished."
+		use_whiptail="False"
+		exit
+		;;
+		*)
+		echo "You cancelled or have finished."
+		use_whiptail="False"
+		exit
+		;;
+	esac
+	done ## menu end
+}
 
+
+install_menu(){
+	echo "Loading option list"
 	option_list(){
     option1="RetroPie"
     option2="Kodi"
     option3="byobu"
     option_all="$option1 $option2 $option3"
+    echo "Option list loaded."
+    echo "containing $option_all"
 
     }
 
