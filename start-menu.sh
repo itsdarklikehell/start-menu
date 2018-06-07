@@ -69,6 +69,11 @@ echo "options menu"
 		Update-System)
 		echo "User selected: " $choice
 		sudo apt-get update && sudo apt-get upgrade
+		cd $HOME/start-menu
+        git pull
+        echo "system update finished"
+        use_whiptail="False"
+        exit
 		;;
 		Update-start-menu)
 		echo "User selected: " $choice
@@ -84,7 +89,7 @@ echo "options menu"
 		;;
         RetroPie-Setup)
 		echo "User selected: " $choice
-        sudo bash $HOME/RetroPie-Setup/retropie_setup.sh
+        sudo retropie-setup
         ;;
         Exit)
 		echo "You cancelled or have finished."
