@@ -108,8 +108,6 @@ install_menu(){
 
 	echo "install menu"
 ## menu start
-	while [ $use_whiptail = True ]
-	do
 	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Select and install tools from a curated list." \
 	"Custom" "install custom tools via apt-get." \
@@ -142,7 +140,6 @@ install_menu(){
             *)
             echo "You cancelled or have finished."
             ;;
-		esac
         ;;
 
 
