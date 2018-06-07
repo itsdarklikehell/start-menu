@@ -59,16 +59,16 @@ echo "options menu"
     while [ $use_whiptail = True ]
 	do
 	choice=$(whiptail --title "Option Menu" --menu "Choose an option" 25 78 16 \
-	"Update System" "Update system." \
-	"Update startup-menu" "Update startup-menu." \
+	"Update-System" "Update system." \
+	"Update-startup-menu" "Update startup-menu." \
     "Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
-		Update System)
+		Update-System)
 		echo "User selected: " $choice
 		sudo apt-get update && sudo apt-get upgrade
 		;;
-		Update startup-menu)
+		Update-startup-menu)
 		echo "User selected: " $choice
 		cd $HOME/startup-menu
         git pull
