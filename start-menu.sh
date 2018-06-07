@@ -72,10 +72,9 @@ echo "options menu"
 		echo "User selected: " $choice
 		cd $HOME/start-menu
         git pull
-        echo "startup-menu updtate finished"
+        echo "startup-menu update finished"
         use_whiptail="False"
         exit
-        start-menu
 		;;
         Exit)
 		echo "You cancelled or have finished."
@@ -93,32 +92,64 @@ echo "options menu"
 
 
 install_menu(){
-	echo "Loading option list"
+
 	option_list(){
-    option1="RetroPie"
+    echo "Loading option list"
+    option1="Emulatiionstation"
+    description1="Emulatiionstation/retropie."
     option2="Kodi"
+    description2="Kodi mediacentre."
     option3="byobu"
+    option3="byobu shell."
     option_all="$option1 $option2 $option3"
     echo "Option list loaded."
     echo "containing $option_all"
-
     }
 
 	echo "install menu"
 ## menu start
 	while [ $use_whiptail = True ]
 	do
-	instll=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
+	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Select and install tools from a curated list." \
 	"Custom" "install custom tools via apt-get." \
 	"Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
 	exitstatus=$?
-	case $instll in
+	case $choice in
 		List)
-		echo "User selected: " $instll
-		;;
+		echo "User selected: " $choice
+        option_list
+		choice=$(whiptail --title "Install list" --checklist \
+        "Choose an option:" 20 78 4 \
+        "$option1" "$description1" ON \
+        "$option2" "$description2" ON \
+		"$option3" "$description3" ON \
+        "Exit" "Exit back to CLI."3>&1 1>&2 2>&3)
+        exitstatus=$?
+        case $choice in
+			$option1)
+            echo "Installing $option1"
+            sudo apt-get install $option1
+            ;;
+            $option2)
+            echo "Installing $option2"
+            sudo apt-get install $option2
+            ;;
+            $option3)
+            echo "Installing $option3"
+            sudo apt-get install $option3
+            ;;
+            *)
+            echo "You cancelled or have finished."
+            ;;
+
+
+
+        ;;
+
+
 		Custom)
-		echo "User selected: " $instll
+		echo "User selected: " $choice
         custom=$(whiptail --inputbox "Please specify the package name to install:" 8 78 synaptic --title "Install Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
