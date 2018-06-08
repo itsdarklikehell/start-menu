@@ -15,6 +15,20 @@ disclaimer(){
 fi
 }
 
+load_tool_list(){
+
+    echo "Loading option list"
+    option1="Emulationstation"
+    description1="Emulationstation/retropie."
+    option2="Kodi"
+    description2="Kodi mediacentre."
+    option3="byobu"
+    description3="byobu shell."
+    option_all="$option1 $option2 $option3"
+    echo "Option list loaded."
+    echo "containing $option_all"
+
+}
 
 start_done(){
 	echo "Finished starting: $choice"
@@ -121,18 +135,6 @@ echo "options menu"
 
 
 install_menu(){
-
-    echo "Loading option list"
-    option1="Emulationstation"
-    description1="Emulationstation/retropie."
-    option2="Kodi"
-    description2="Kodi mediacentre."
-    option3="byobu"
-    option3="byobu shell."
-    option_all="$option1 $option2 $option3"
-    echo "Option list loaded."
-    echo "containing $option_all"
-
 echo "install menu"
 ## menu start
 	while [ use_whiptail = True ]
@@ -145,7 +147,7 @@ echo "install menu"
 	case $choice in
 		List)
 		echo "User selected: " $choice
-
+        instll_list_menu
         ;;
         Custom)
 		echo "User selected: " $choice
@@ -173,6 +175,12 @@ echo "install menu"
     done
 }
 
+instll_list_menu(){
+echo "User selected: " $choice
+load_tool_list
+instll_done
+}
+
 start_menu(){
 	echo "start menu"
 	## menu start
@@ -186,7 +194,8 @@ start_menu(){
 	case $choice in
 		List)
 		echo "User selected: " $choice
-		;;
+		start_list_menu
+        ;;
 		Custom)
 		echo "User selected: " $choice
         choice=$(whiptail --inputbox "Please specify the command to run:" 8 78 synaptic --title "Custom comand Dialog" 3>&1 1>&2 2>&3)
@@ -212,5 +221,12 @@ start_menu(){
 	esac
 	done ## menu end
 }
+
+start_list_menu(){
+echo "User selected: " $choice
+load_tool_list
+start_done
+}
+
 config
 disclaimer
