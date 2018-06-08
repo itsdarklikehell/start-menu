@@ -35,7 +35,7 @@ start_done(){
 	whiptail --title " Dialog" --msgbox "Finished starting: $choice. You must hit OK to continue." 8 78
 }
 
-inst_doen(){
+instll_doen(){
 	echo "Finished instaling: $choice"
 	whiptail --title " Dialog" --msgbox "Finished installing: $choice. You must hit OK to continue." 8 78
 }
@@ -148,6 +148,7 @@ echo "install menu"
 		List)
 		echo "User selected: " $choice
         instll_list_menu
+
         ;;
         Custom)
 		echo "User selected: " $choice
@@ -156,7 +157,7 @@ echo "install menu"
 		if [ $exitstatus = 0 ]; then
     		echo "Ok, instaling:" $choice
     		sudo apt-get install $choice
-            inst_done
+            instll_done
 		else
     		echo "User selected Cancel."
 		fi
@@ -173,12 +174,6 @@ echo "install menu"
 		;;
 	esac
     done
-}
-
-instll_list_menu(){
-echo "User selected: " $choice
-load_tool_list
-instll_done
 }
 
 start_menu(){
@@ -225,7 +220,37 @@ start_menu(){
 start_list_menu(){
 echo "User selected: " $choice
 load_tool_list
+choice=$(whiptail --title "Start Tool" --checklist \
+"Select tool to start" 20 78 4 \
+"$option1" "$description1" ON \
+"$option2" "$description2" ON 3>&1 1>&2 2>&3)
+case $choice in
+$option1)
+echo "User selected: " $choice
 start_done
+;;
+$option2)
+echo "User selected: " $choice
+start_done
+;;
+}
+
+instll_list_menu(){
+echo "User selected: " $choice
+load_tool_list
+choice=$(whiptail --title "Install Tool" --checklist \
+"Select tool to install" 20 78 4 \
+"$option1" "$description1" ON \
+"$option2" "$description2" ON 3>&1 1>&2 2>&3)
+case $choice in
+$option1)
+echo "User selected: " $choice
+start_done
+;;
+$option2)
+echo "User selected: " $choice
+start_done
+;;
 }
 
 config
