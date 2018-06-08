@@ -133,13 +133,9 @@ install_menu(){
     echo "containing $option_all"
 
 echo "install menu"
-## menu start
-	while [ use_whipteil = True ]
-	do
 	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Select and install tools from a curated list." \
-	"Custom" "install custom tools via apt-get." \
-	"Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
+	"Custom" "install custom tools via apt-get." 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
 		List)
@@ -157,11 +153,6 @@ echo "install menu"
     		echo "User selected Cancel."
 		fi
 		;;
-		Exit)
-		echo "You cancelled or have finished."
-		use_whiptail="False"
-		exit
-		;;
 		*)
 		echo "You cancelled or have finished."
 		use_whiptail="False"
@@ -174,8 +165,6 @@ echo "install menu"
 start_menu(){
 	echo "start menu"
 	## menu start
-    while [ $use_whiptail = True ]
-	do
 	choice=$(whiptail --title "Start Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Start tools fom curated list." \
 	"Custom" "Start custom command if present." \
@@ -196,11 +185,6 @@ start_menu(){
 		else
     		echo "User selected Cancel."
 		fi
-		;;
-		Exit)
-		echo "You cancelled or have finished."
-		use_whiptail="False"
-		exit
 		;;
 		*)
 		echo "You cancelled or have finished."
