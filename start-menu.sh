@@ -121,6 +121,7 @@ echo "options menu"
 
 
 install_menu(){
+
     echo "Loading option list"
     option1="Emulationstation"
     description1="Emulationstation/retropie."
@@ -134,7 +135,7 @@ install_menu(){
 
 echo "install menu"
 ## menu start
-	while [ use_whipteil = True ]
+	while [ use_whiptail = True ]
 	do
 	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Select and install tools from a curated list." \
@@ -192,7 +193,7 @@ start_menu(){
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
     		echo "Ok, stating:" $choice
-    		sudo apt-get install $choice
+    		bash $choice
             start_done
 		else
     		echo "User selected Cancel."
