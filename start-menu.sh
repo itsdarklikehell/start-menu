@@ -70,6 +70,8 @@ main_menu(){
 option_menu(){
 echo "options menu"
 	## menu start
+    while [ $use_whiptail = True ]
+	do
 	choice=$(whiptail --title "Option Menu" --menu "Choose an option" 25 78 16 \
 	"Update-System" "Update system." \
 	"Update-start-menu" "Update startup-menu." \
@@ -113,6 +115,8 @@ echo "options menu"
 		use_whiptail="False"
 		exit
 		;;
+	esac
+	done ## menu end
 }
 
 
@@ -129,9 +133,13 @@ install_menu(){
     echo "containing $option_all"
 
 echo "install menu"
+## menu start
+	while [ use_whipteil = True ]
+	do
 	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Select and install tools from a curated list." \
-	"Custom" "install custom tools via apt-get." 3>&1 1>&2 2>&3)
+	"Custom" "install custom tools via apt-get." \
+	"Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
 		List)
@@ -149,16 +157,25 @@ echo "install menu"
     		echo "User selected Cancel."
 		fi
 		;;
+		Exit)
+		echo "You cancelled or have finished."
+		use_whiptail="False"
+		exit
+		;;
 		*)
 		echo "You cancelled or have finished."
 		use_whiptail="False"
 		exit
 		;;
+	esac
+    done
 }
 
 start_menu(){
 	echo "start menu"
 	## menu start
+    while [ $use_whiptail = True ]
+	do
 	choice=$(whiptail --title "Start Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Start tools fom curated list." \
 	"Custom" "Start custom command if present." \
@@ -174,11 +191,16 @@ start_menu(){
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
     		echo "Ok, stating:" $choice
-    		bash $choice
+    		sudo apt-get install $choice
             start_done
 		else
     		echo "User selected Cancel."
 		fi
+		;;
+		Exit)
+		echo "You cancelled or have finished."
+		use_whiptail="False"
+		exit
 		;;
 		*)
 		echo "You cancelled or have finished."
