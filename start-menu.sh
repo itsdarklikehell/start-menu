@@ -144,6 +144,23 @@ echo "install menu"
 	case $choice in
 		List)
 		echo "User selected: " $choice
+        choice=$(whiptail --title "Check list example" --checklist \
+		"Choose user's permissions" 20 78 4 \
+		"Byobu" "Allow connections to other hosts" ON \
+		"Retropie" "Allow connections from other hosts" OFF)
+		case $choice in
+			Byobu)
+			sudo apt-get install byobu
+			echo "User selected: " $choice
+			;;
+            Retropie)
+            echo "$WIP"
+            ;;
+            *)
+			echo "You cancelled or have finished."
+			use_whiptail="False"
+			exit
+            ;;
         ;;
         Custom)
 		echo "User selected: " $choice
