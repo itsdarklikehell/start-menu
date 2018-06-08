@@ -4,8 +4,6 @@
 config(){
 	use_whiptail="True"
     WIP="WORK IN PROGRESS, NOT YET IMPLEMENTED."
-    inst_done="Finished instaling: $choice"
-    start_done="Finished starting: $choice"
 }
 
 disclaimer(){
@@ -16,6 +14,20 @@ disclaimer(){
     echo "User selected No, exit status was $?."
 fi
 }
+
+
+start_done(){
+	echo "Finished starting: $choice"
+	whiptail --title " Dialog" --msgbox "Finished starting: $choice. You must hit OK to continue." 8 78
+}
+
+inst_doen(){
+	echo "Finished instaling: $choice"
+	whiptail --title " Dialog" --msgbox "Finished installing: $choice. You must hit OK to continue." 8 78
+}
+
+
+
 
 main_menu(){
 	echo "main menu"
@@ -110,8 +122,8 @@ echo "options menu"
 
 install_menu(){
     echo "Loading option list"
-    option1="Emulatiionstation"
-    description1="Emulatiionstation/retropie."
+    option1="Emulationstation"
+    description1="Emulationstation/retropie."
     option2="Kodi"
     description2="Kodi mediacentre."
     option3="byobu"
@@ -140,6 +152,7 @@ echo "install menu"
 		if [ $exitstatus = 0 ]; then
     		echo "Ok, instaling:" $choice
     		sudo apt-get install $choice
+            inst_done
 		else
     		echo "User selected Cancel."
 		fi
@@ -178,7 +191,8 @@ start_menu(){
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
     		echo "Ok, stating:" $choice
-    		sudo apt-get install $choice
+    		bash $choice
+            start_done
 		else
     		echo "User selected Cancel."
 		fi
