@@ -4,6 +4,8 @@
 config(){
 	use_whiptail="True"
     WIP="WORK IN PROGRESS, NOT YET IMPLEMENTED."
+    inst_done="Finished instaling: $choice"
+    start_done="Finished starting: $choice"
 }
 
 disclaimer(){
@@ -107,8 +109,6 @@ echo "options menu"
 
 
 install_menu(){
-
-	option_list(){
     echo "Loading option list"
     option1="Emulatiionstation"
     description1="Emulatiionstation/retropie."
@@ -119,9 +119,8 @@ install_menu(){
     option_all="$option1 $option2 $option3"
     echo "Option list loaded."
     echo "containing $option_all"
-    }
 
-	echo "install menu"
+echo "install menu"
 ## menu start
 	while [ use_whipteil = True ]
 	do
@@ -133,36 +132,14 @@ install_menu(){
 	case $choice in
 		List)
 		echo "User selected: " $choice
-        option_list
-
-		choice=$(whiptail --title "Install list" --checklist \
-        "Choose an option:" 20 78 4 \
-        "$option1" "$description1" ON \
-        "$option2" "$description2" ON \
-		"$option3" "$description3" ON \
-        "Exit" "Exit back to CLI."3>&1 1>&2 2>&3)
-        exitstatus=$?
-        case $choice in
-
-        	Exit)
-			echo "You cancelled or have finished."
-			use_whiptail="False"
-			exit
-			;;
-			*)
-			echo "You cancelled or have finished."
-			use_whiptail="False"
-			exit
-			;;
-            esac
         ;;
         Custom)
 		echo "User selected: " $choice
-        custom=$(whiptail --inputbox "Please specify the package name to install:" 8 78 synaptic --title "Install Dialog" 3>&1 1>&2 2>&3)
+        choice=$(whiptail --inputbox "Please specify the package name to install:" 8 78 synaptic --title "Install Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
-    		echo "Ok, instaling:" $custom
-    		sudo apt-get install $custom
+    		echo "Ok, instaling:" $choice
+    		sudo apt-get install $choice
 		else
     		echo "User selected Cancel."
 		fi
@@ -186,22 +163,22 @@ start_menu(){
 	## menu start
     while [ $use_whiptail = True ]
 	do
-	start=$(whiptail --title "Start Menu" --menu "Choose an option" 25 78 16 \
+	choice=$(whiptail --title "Start Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Start tools fom curated list." \
 	"Custom" "Start custom command if present." \
 	"Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
 	exitstatus=$?
-	case $start in
+	case $choice in
 		List)
-		echo "User selected: " $start
+		echo "User selected: " $choice
 		;;
 		Custom)
-		echo "User selected: " $start
-        custom=$(whiptail --inputbox "Please specify the package name to install:" 8 78 synaptic --title "Install Dialog" 3>&1 1>&2 2>&3)
+		echo "User selected: " $choice
+        choice=$(whiptail --inputbox "Please specify the command to run:" 8 78 synaptic --title "Custom comand Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
-    		echo "Ok, stating:" $custom
-    		sudo apt-get install $custom
+    		echo "Ok, stating:" $choice
+    		sudo apt-get install $choice
 		else
     		echo "User selected Cancel."
 		fi
