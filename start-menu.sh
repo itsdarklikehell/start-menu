@@ -225,14 +225,14 @@ choice=$(whiptail --title "Start Tool" --checklist \
 "$option1" "$description1" ON \
 "$option2" "$description2" ON 3>&1 1>&2 2>&3)
 case $choice in
-$option1)
-echo "User selected: " $choice
-start_done
-;;
-$option2)
-echo "User selected: " $choice
-start_done
-;;
+	$option1)
+	echo "User selected: " $choice
+	start_done
+	;;
+	$option2)
+	echo "User selected: " $choice
+	start_done
+	;;
 }
 
 instll_list_menu(){
@@ -243,14 +243,14 @@ choice=$(whiptail --title "Install Tool" --checklist \
 "$option1" "$description1" ON \
 "$option2" "$description2" ON 3>&1 1>&2 2>&3)
 case $choice in
-$option1)
-echo "User selected: " $choice
-start_done
-;;
-$option2)
-echo "User selected: " $choice
-start_done
-;;
+	$option1)
+	echo "User selected: " $choice
+	start_done
+	;;
+	$option2)
+	echo "User selected: " $choice
+	start_done
+	;;
 }
 
 config
