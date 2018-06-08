@@ -70,8 +70,6 @@ main_menu(){
 option_menu(){
 echo "options menu"
 	## menu start
-    while [ $use_whiptail = True ]
-	do
 	choice=$(whiptail --title "Option Menu" --menu "Choose an option" 25 78 16 \
 	"Update-System" "Update system." \
 	"Update-start-menu" "Update startup-menu." \
@@ -115,8 +113,6 @@ echo "options menu"
 		use_whiptail="False"
 		exit
 		;;
-	esac
-	done ## menu end
 }
 
 
@@ -158,8 +154,6 @@ echo "install menu"
 		use_whiptail="False"
 		exit
 		;;
-	esac
-    done
 }
 
 start_menu(){
