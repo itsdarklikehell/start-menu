@@ -29,7 +29,7 @@ load_start_tool_list(){
     echo "containing $option_all"
 }
 
-load_instll_tool_list(){
+load_install_tool_list(){
     option1="Emulationstation"
     description1="Emulationstation/retropie."
     option2="Kodi"
@@ -43,12 +43,12 @@ load_instll_tool_list(){
 
 start_done(){
 	echo "Finished starting: $choice"
-	whiptail --title " Dialog" --msgbox "Finished starting: $choice. You must hit OK to continue." 8 78
+	whiptail --title " Dialog" --msgbox "Finished starting: $choice." 8 78
 }
 
-instll_done(){
+install_done(){
 	echo "Finished instaling: $choice"
-	whiptail --title " Dialog" --msgbox "Finished installing: $choice. You must hit OK to continue." 8 78
+	whiptail --title " Dialog" --msgbox "Finished installing: $choice." 8 78
 }
 
 main_menu(){
@@ -141,7 +141,6 @@ echo "options menu"
 	done ## menu end
 }
 
-
 install_menu(){
 	echo "install menu"
 	## menu start
@@ -159,12 +158,12 @@ install_menu(){
         ;;
 		Custom)
 		echo "User selected: " $choice
-        choice=$(whiptail --inputbox "Please specify the package to instal:" 8 78 synaptic --title "Custom install Dialog" 3>&1 1>&2 2>&3)
+        choice=$(whiptail --inputbox "Please specify the package to install:" 8 78 synaptic --title "Custom install Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
     		echo "Ok, instaling:" $choice
     		sudo apt-get install $choice
-            instll_done
+            install_done
 		else
     		echo "User selected Cancel."
 		fi
@@ -236,7 +235,7 @@ choice=$(whiptail --title "Start Tool" --radioist \
 
 install_list_menu(){
 echo "User selected: " $choice
-load_instll_tool_list
+load_install_tool_list
 choice=$(whiptail --title "Install Tool" --checklist \
 "Select tool to install" 20 78 4 \
 "$option1" "$description1" ON \
