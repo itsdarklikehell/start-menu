@@ -5,7 +5,7 @@
     option2="Emulationstation"
     description2="Emulationstation frontend."
     option3="Kodi"
-    description3="bKodi mediacentre."
+    description3="Kodi mediacentre."
     option4="byobu"
     description4="byobu shell."
     option_all="$option1 $option2 $option3"
