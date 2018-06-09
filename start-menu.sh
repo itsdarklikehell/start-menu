@@ -162,8 +162,8 @@ install_menu(){
         choice=$(whiptail --inputbox "Please specify the package to instal:" 8 78 synaptic --title "Custom install Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
-    		echo "Ok, stating:" $choice
-    		bash $choice
+    		echo "Ok, instaling:" $choice
+    		sudo apt-get install $choice
             instll_done
 		else
     		echo "User selected Cancel."
