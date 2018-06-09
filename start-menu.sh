@@ -181,7 +181,7 @@ echo "User selected: " $choice
 load_start_tool_list
 choice=$(whiptail --title "Start Tool" --radiolist \
 "Select tool to start" 20 78 4 \
-"$option_1" "$description_1" OFF 3>&1 1>&2 2>&3)
+"Desktop" "Raspbian Pixel Desktop." ON 3>&1 1>&2 2>&3)
 
 }
 
@@ -190,7 +190,7 @@ echo "User selected: " $choice
 load_install_tool_list
 choice=$(whiptail --title "Install Tool" --checklist \
 "Select tool to install" 20 78 4 \
-"$option_1" "$description_1" ON 3>&1 1>&2 2>&3)
+"Desktop" "Raspbian Pixel Desktop." ON 3>&1 1>&2 2>&3)
 
 }
 
