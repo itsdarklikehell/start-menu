@@ -1,11 +1,13 @@
 #!/bin/bash
 
 #usage:
-#$optionX="optionname"
-#$descriptionX="description"
+#optionX="optionname"
+#descriptionX="description"
+#packagenameX="packagename"
 
     option1="Desktop"
     description="Raspbian desktop."
+    packagename1="packagename"
 
     option2="Emulationstation"
     description2="Emulationstation frontend."
@@ -16,4 +18,7 @@
     option4="byobu"
     description4="byobu shell."
 
-    option_all="$option1 $option2 $option3"
+#list all
+option_all="$option1 $option2 $option3 $option4"
+description_all="$description1 $description2 $description3 $description4"
+packagename_all="$packagename1 $packagename2 $packagename3 $packagename4"

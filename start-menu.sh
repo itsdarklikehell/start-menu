@@ -191,9 +191,19 @@ echo "User selected: " $choice
 load_start_tool_list
 choice=$(whiptail --title "Start Tool" --radiolist \
 "Select tool to start" 20 78 4 \
-"$option1" "$description1" ON \
+"ALL" "Start all tools" ON \
+"$option1" "$description1" OFF \
 "$option2" "$description2" OFF \
-"$option3" "$description3" OFF 3>&1 1>&2 2>&3)
+"$option3" "$description3" OFF \
+"$option4" "$description4" OFF 3>&1 1>&2 2>&3)
+
+if [ $choice = ALL ]; then
+bash $packagename_all
+fi
+if [ $choice = $option1 ]; then
+bash $packagename1
+fi
+
 }
 
 install_list_menu(){
@@ -201,9 +211,20 @@ echo "User selected: " $choice
 load_install_tool_list
 choice=$(whiptail --title "Install Tool" --checklist \
 "Select tool to install" 20 78 4 \
+"ALL" "$description1" ON \
 "$option1" "$description1" ON \
 "$option2" "$description2" ON \
-"$option3" "$description3" OFF 3>&1 1>&2 2>&3)
+"$option3" "$description3" ON \
+"$option4" "$description4" ON 3>&1 1>&2 2>&3)
+
+
+if [ $choice = ALL ]; then
+bash $packagename_all
+fi
+if [ $choice = $option1 ]; then
+bash $packagename1
+fi
+
 }
 
 config
