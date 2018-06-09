@@ -143,9 +143,6 @@ echo "options menu"
 
 install_menu(){
 	echo "install menu"
-	## menu start
-    while [ $use_whiptail = True ]
-	do
 	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Install tools fom curated list." \
 	"Custom" "Install custom package with apt-get." \
@@ -178,8 +175,6 @@ install_menu(){
 		use_whiptail="False"
 		exit
 		;;
-	esac
-	done ## menu end
 }
 
 
