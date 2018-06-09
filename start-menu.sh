@@ -149,7 +149,7 @@ install_menu(){
 	do
 	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Install tools fom curated list." \
-	"Custom" "Install custom command if present." \
+	"Custom" "Install custom package with apt-get." \
 	"Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
