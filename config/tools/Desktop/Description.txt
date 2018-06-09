@@ -1,0 +1,7 @@
+#usage:
+#option="optionname"
+#description="description"
+#packagename="packagename"
+option="Desktop"
+description="Raspbian Pixel Desktop."
+packagename="startx"

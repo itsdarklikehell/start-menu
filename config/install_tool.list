@@ -5,19 +5,23 @@
 #descriptionX="description"
 #packagenameX="packagenameX"
 
-    option1="Emulationstation"
-    description1="Emulationstation/retropie."
-    packagename1="emulationstation"
+	option1="Desktop"
+    description1="Raspbian Pixel Desktop."
+    packagename1=""
 
-	option2="Kodi"
-    description2="Kodi mediacentre."
-    packagename2="kodi"
+    option2="Emulationstation"
+    description2="Emulationstation/retropie."
+    packagename2=""
 
-    option3="byobu"
-    description3="byobu shell."
-    packagename3="byobu"
+	option3="Kodi"
+    description3="Kodi mediacentre."
+    packagename3="kodi"
+
+    option4="byobu"
+    description4="byobu shell."
+    packagename4="byobu"
 
 #list all
-option_all="$option1 $option2 $option3"
-description_all="$description1 $description2 $description3"
-packagename_all="$packagename1 $packagename2 $packagename3"
+option_all=" $option2 $option3"
+description_all="$description1 $description2 $description3 $description4"
+packagename_all="$packagename1 $packagename2 $packagename3 $packagename4"

@@ -6,17 +6,20 @@
 #packagenameX="packagename"
 
     option1="Desktop"
-    description="Raspbian desktop."
-    packagename1="packagename"
+    description1="Raspbian Pixel Desktop."
+    packagename1="startx"
 
     option2="Emulationstation"
     description2="Emulationstation frontend."
-
+	packagename2="emulationstation"
+	
     option3="Kodi"
     description3="Kodi mediacentre."
+    packagename3="kodi"
 
     option4="byobu"
     description4="byobu shell."
+    packagename4="byobu"
 
 #list all
 option_all="$option1 $option2 $option3 $option4"
