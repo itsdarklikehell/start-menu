@@ -18,15 +18,15 @@ fi
 load_start_tool_list(){
 source $HOME/start-menu/config/start_tools.list
 
-	option1="Desktop"
-    description1="Raspbian desktop."
-    option2="Emulationstation"
-    description2="Emulationstation frontend."
-    option3="Kodi"
-    description3="bKodi mediacentre."
-    option4="byobu"
-    description4="byobu shell."
-    option_all="$option1 $option2 $option3"
+#	option1="Desktop"
+#    description1="Raspbian desktop."
+#    option2="Emulationstation"
+#    description2="Emulationstation frontend."
+#    option3="Kodi"
+#    description3="bKodi mediacentre."
+#    option4="byobu"
+#    description4="byobu shell."
+#    option_all="$option1 $option2 $option3"
     echo "Option list loaded."
     echo "containing $option_all"
 }
@@ -34,13 +34,13 @@ source $HOME/start-menu/config/start_tools.list
 load_install_tool_list(){
 source $HOME/start-menu/config/install_tools.list
 
-	option1="Emulationstation"
-    description1="Emulationstation/retropie."
-    option2="Kodi"
-    description2="Kodi mediacentre."
-    option3="byobu"
-    description3="byobu shell."
-    option_all="$option1 $option2 $option3"
+#	option1="Emulationstation"
+#    description1="Emulationstation/retropie."
+#    option2="Kodi"
+#    description2="Kodi mediacentre."
+#    option3="byobu"
+#    description3="byobu shell."
+#    option_all="$option1 $option2 $option3"
     echo "Option list loaded."
     echo "containing $option_all"
 }
