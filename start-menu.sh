@@ -167,7 +167,6 @@ echo "User selected: " $choice
 choice=$(whiptail --title "Start Tool" --radiolist \
 "Select tool to start" 20 78 4 \
 "Desktop" "Raspbian Pixel Desktop." ON 3>&1 1>&2 2>&3)
-
 }
 
 install_list_menu(){
@@ -175,7 +174,6 @@ echo "User selected: " $choice
 choice=$(whiptail --title "Install Tool" --checklist \
 "Select tool to install" 20 78 4 \
 "Desktop" "Raspbian Pixel Desktop." ON 3>&1 1>&2 2>&3)
-
 }
 
 config
