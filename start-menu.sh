@@ -16,7 +16,7 @@ fi
 }
 
 load_start_tool_list(){
-source $HOME/start-menu/config/start_tools.list
+source $HOME/start-menu/config/start_tool.list
 
 #	option1="Desktop"
 #    description1="Raspbian desktop."
@@ -32,7 +32,7 @@ source $HOME/start-menu/config/start_tools.list
 }
 
 load_install_tool_list(){
-source $HOME/start-menu/config/install_tools.list
+source $HOME/start-menu/config/install_tool.list
 
 #	option1="Emulationstation"
 #    description1="Emulationstation/retropie."
