@@ -175,6 +175,7 @@ install_menu(){
 		use_whiptail="False"
 		exit
 		;;
+    esac
 }
 
 
