@@ -15,9 +15,21 @@ disclaimer(){
 fi
 }
 
-load_tool_list(){
+load_start_tool_list(){
+    option1="Desktop"
+    description1="Raspbian desktop."
+    option2="Emulationstation"
+    description2="Emulationstation frontend."
+    option3="Kodi"
+    description3="bKodi mediacentre."
+    option4="byobu"
+    description4="byobu shell."
+    option_all="$option1 $option2 $option3"
+    echo "Option list loaded."
+    echo "containing $option_all"
+}
 
-    echo "Loading option list"
+load_instll_tool_list(){
     option1="Emulationstation"
     description1="Emulationstation/retropie."
     option2="Kodi"
@@ -27,7 +39,6 @@ load_tool_list(){
     option_all="$option1 $option2 $option3"
     echo "Option list loaded."
     echo "containing $option_all"
-
 }
 
 start_done(){
@@ -35,13 +46,10 @@ start_done(){
 	whiptail --title " Dialog" --msgbox "Finished starting: $choice. You must hit OK to continue." 8 78
 }
 
-instll_doen(){
+instll_done(){
 	echo "Finished instaling: $choice"
 	whiptail --title " Dialog" --msgbox "Finished installing: $choice. You must hit OK to continue." 8 78
 }
-
-
-
 
 main_menu(){
 	echo "main menu"
@@ -148,7 +156,6 @@ echo "install menu"
 		List)
 		echo "User selected: " $choice
         instll_list_menu
-
         ;;
         Custom)
 		echo "User selected: " $choice
@@ -219,16 +226,16 @@ start_menu(){
 
 start_list_menu(){
 echo "User selected: " $choice
-load_tool_list
-choice=$(whiptail --title "Start Tool" --checklist \
+load_start_tool_list
+choice=$(whiptail --title "Start Tool" --radioist \
 "Select tool to start" 20 78 4 \
 "$option1" "$description1" ON \
-"$option2" "$description2" ON 3>&1 1>&2 2>&3)
+"$option2" "$description2" Off 3>&1 1>&2 2>&3)
 }
 
 instll_list_menu(){
 echo "User selected: " $choice
-load_tool_list
+load_instll_tool_list
 choice=$(whiptail --title "Install Tool" --checklist \
 "Select tool to install" 20 78 4 \
 "$option1" "$description1" ON \
