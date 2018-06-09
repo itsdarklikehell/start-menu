@@ -1,9 +1,18 @@
 #!/bin/bash
 
+#usage:
+#$optionX="optionname"
+#$descriptionX="description"
+
     option1="Emulationstation"
     description1="Emulationstation/retropie."
-    option2="Kodi"
+
+	option2="Kodi"
     description2="Kodi mediacentre."
+
     option3="byobu"
     description3="byobu shell."
-    option_all="$option1 $option2 $option3"
+
+#list all
+option_all="$option1 $option2 $option3"
+description_all="$description1 $description2 $description3"

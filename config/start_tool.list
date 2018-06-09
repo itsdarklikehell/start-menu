@@ -1,13 +1,19 @@
 #!/bin/bash
 
-#"$option1" "$description1" ON \
-#echo $option2 "$description2" Off
-    option1='"Desktop" "Raspbian desktop." ON'
+#usage:
+#$optionX="optionname"
+#$descriptionX="description"
+
+    option1="Desktop"
+    description="Raspbian desktop."
 
     option2="Emulationstation"
     description2="Emulationstation frontend."
+
     option3="Kodi"
     description3="Kodi mediacentre."
+
     option4="byobu"
     description4="byobu shell."
+
     option_all="$option1 $option2 $option3"
