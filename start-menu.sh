@@ -78,7 +78,8 @@ echo "options menu"
 	"Update-System" "Update system." \
 	"Update-start-menu" "Update startup-menu." \
     "Raspi-Config" "Configure raspbian." \
-    "RetroPie-Setup" "Configure Retropie." 3>&1 1>&2 2>&3)
+    "RetroPie-Setup" "Configure Retropie." \
+    "Cleanup-System" "Cleanup system." 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
 		Update-System)
@@ -105,6 +106,11 @@ echo "options menu"
         RetroPie-Setup)
 		echo "User selected: " $choice
         sudo $HOME/RetroPie-Setup/retropie_setup.sh
+        ;;
+        Cleanup-System)
+		echo "User selected: " $choice
+        sudo apt-get autoremove
+        sudo apt-get autoclean
         ;;
         *)
 		echo "You cancelled or have finished."
@@ -175,18 +181,7 @@ echo "User selected: " $choice
 load_start_tool_list
 choice=$(whiptail --title "Start Tool" --radiolist \
 "Select tool to start" 20 78 4 \
-"ALL" "Start all tools" ON \
-"$option1" "$description1" OFF \
-"$option2" "$description2" OFF \
-"$option3" "$description3" OFF \
-"$option4" "$description4" OFF 3>&1 1>&2 2>&3)
-
-if [ $choice = ALL ]; then
-bash $packagename_all
-fi
-if [ $choice = $option1 ]; then
-bash $HOME/start-menu/config/tools/$name/start.sh
-fi
+"$option_1" "$description_1" OFF 3>&1 1>&2 2>&3)
 
 }
 
@@ -195,19 +190,7 @@ echo "User selected: " $choice
 load_install_tool_list
 choice=$(whiptail --title "Install Tool" --checklist \
 "Select tool to install" 20 78 4 \
-"ALL" "$description1" ON \
-"$option1" "$description1" ON \
-"$option2" "$description2" ON \
-"$option3" "$description3" ON \
-"$option4" "$description4" ON 3>&1 1>&2 2>&3)
-
-
-if [ $choice = ALL ]; then
-bash $packagename_all
-fi
-if [ $choice = $option1 ]; then
-bash $HOME/start-menu/config/tools/$name/install.sh
-fi
+"$option_1" "$description_1" ON 3>&1 1>&2 2>&3)
 
 }
 
