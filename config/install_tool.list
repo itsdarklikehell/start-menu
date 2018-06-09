@@ -1,27 +1,19 @@
 #!/bin/bash
 
 #usage:
-#optionX="optionname"
-#descriptionX="description"
-#packagenameX="packagenameX"
-
-	option1="Desktop"
-    description1="Raspbian Pixel Desktop."
-    packagename1=""
-
-    option2="Emulationstation"
-    description2="Emulationstation/retropie."
-    packagename2=""
-
-	option3="Kodi"
-    description3="Kodi mediacentre."
-    packagename3="kodi"
-
-    option4="byobu"
-    description4="byobu shell."
-    packagename4="byobu"
+#name="Optionname" # Foldername in config/tools containing info/files
+#optionX=$(cat $HOME/start-menu/config/tools/$name/info/name) #or use hardcode like "Optionname"
+#descriptionX=$(cat $HOME/start-menu/config/tools/$name/info/description) #or use hardcode like "Option description"
+#packagenameX=$(cat $HOME/start-menu/config/tools/$name/info/packagename) #or use hardcode like "Packagename"
+#exec_commandX=$(cat $HOME/start-menu/config/tools/$name/info/command) #or use hardcode like "Execname -S"
+	number="1"
+	name="Desktop"
+	option_$number=$(cat $HOME/start-menu/config/tools/$name/name) # "Desktop"
+    description_$number=$(cat $HOME/start-menu/config/tools/$name/description) # "Raspbian Pixel Desktop."
+    packagename_$number=$(cat $HOME/start-menu/config/tools/$name/packagename) # "startx"
+    exec_command_$number=$(cat $HOME/start-menu/config/tools/$name/info/command) #or use hardcode like "Execname -S"
 
 #list all
-option_all=" $option2 $option3"
-description_all="$description1 $description2 $description3 $description4"
-packagename_all="$packagename1 $packagename2 $packagename3 $packagename4"
+option_all=" $option1"
+description_all="$description1"
+packagename_all="$packagename1"

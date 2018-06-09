@@ -17,42 +17,26 @@ fi
 
 load_start_tool_list(){
 source $HOME/start-menu/config/start_tool.list
-
-#	option1="Desktop"
-#    description1="Raspbian desktop."
-#    option2="Emulationstation"
-#    description2="Emulationstation frontend."
-#    option3="Kodi"
-#    description3="bKodi mediacentre."
-#    option4="byobu"
-#    description4="byobu shell."
-#    option_all="$option1 $option2 $option3"
     echo "Option list loaded."
     echo "containing $option_all"
+    whiptail --title " Finished Loading" --msgbox "Finished Loading tool list containing: $option_all." 8 78
 }
 
 load_install_tool_list(){
 source $HOME/start-menu/config/install_tool.list
-
-#	option1="Emulationstation"
-#    description1="Emulationstation/retropie."
-#    option2="Kodi"
-#    description2="Kodi mediacentre."
-#    option3="byobu"
-#    description3="byobu shell."
-#    option_all="$option1 $option2 $option3"
     echo "Option list loaded."
     echo "containing $option_all"
+    whiptail --title " Finished Loading" --msgbox "Finished Loading tool list containing: $option_all." 8 78
 }
 
 start_done(){
 	echo "Finished starting: $choice"
-	whiptail --title " Dialog" --msgbox "Finished starting: $choice." 8 78
+	whiptail --title " Finished Starting" --msgbox "Finished starting: $choice." 8 78
 }
 
 install_done(){
 	echo "Finished instaling: $choice"
-	whiptail --title " Dialog" --msgbox "Finished installing: $choice." 8 78
+	whiptail --title " Finished Installing" --msgbox "Finished installing: $choice." 8 78
 }
 
 main_menu(){
@@ -201,7 +185,7 @@ if [ $choice = ALL ]; then
 bash $packagename_all
 fi
 if [ $choice = $option1 ]; then
-bash $packagename1
+bash $HOME/start-menu/config/tools/$name/start.sh
 fi
 
 }
@@ -222,7 +206,7 @@ if [ $choice = ALL ]; then
 bash $packagename_all
 fi
 if [ $choice = $option1 ]; then
-bash $packagename1
+bash $HOME/start-menu/config/tools/$name/install.sh
 fi
 
 }
