@@ -171,7 +171,7 @@ case $choice in
 	Desktop)
 	echo "User selected: " $choice
     name="Desktop"
-    bash $HOME/start-menu/config/tools/$name/install.sh
+    bash $HOME/start-menu/config/tools/$name/start.sh
     ;;
 	*)
 	echo "You cancelled or have finished."
@@ -189,7 +189,7 @@ case $choice in
 	Desktop)
 	echo "User selected: " $choice
     name="Desktop"
-    bash $HOME/start-menu/config/tools/$name/start.sh
+    bash $HOME/start-menu/config/tools/$name/install.sh
     ;;
 	*)
 	echo "You cancelled or have finished."
