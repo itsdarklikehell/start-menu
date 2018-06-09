@@ -1,0 +1,9 @@
+#!/bin/bash
+
+    option1="Emulationstation"
+    description1="Emulationstation/retropie."
+    option2="Kodi"
+    description2="Kodi mediacentre."
+    option3="byobu"
+    description3="byobu shell."
+    option_all="$option1 $option2 $option3"

@@ -16,7 +16,9 @@ fi
 }
 
 load_start_tool_list(){
-    option1="Desktop"
+source $HOME/start-menu/config/start_tools.list
+
+	option1="Desktop"
     description1="Raspbian desktop."
     option2="Emulationstation"
     description2="Emulationstation frontend."
@@ -30,7 +32,9 @@ load_start_tool_list(){
 }
 
 load_install_tool_list(){
-    option1="Emulationstation"
+source $HOME/start-menu/config/install_tools.list
+
+	option1="Emulationstation"
     description1="Emulationstation/retropie."
     option2="Kodi"
     description2="Kodi mediacentre."
