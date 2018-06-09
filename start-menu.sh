@@ -59,8 +59,7 @@ main_menu(){
 	choice=$(whiptail --title "Main Menu" --menu "Choose an option" 25 78 16 \
 	"Install" "Install tools." \
 	"Start" "Start tools." \
-    "Options" "Options and configuration." \
-    "Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
+    "Options" "Options and configuration." 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
 		Install)
@@ -74,11 +73,6 @@ main_menu(){
         Options)
 		echo "User selected: " $choice
 		option_menu
-		;;
-		Exit)
-		echo "You cancelled or have finished."
-		use_whiptail="False"
-		exit
 		;;
 		*)
 		echo "You cancelled or have finished."
@@ -145,8 +139,7 @@ install_menu(){
 	echo "install menu"
 	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Install tools fom curated list." \
-	"Custom" "Install custom package with apt-get." \
-	"Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
+	"Custom" "Install custom package with apt-get." 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
 		List)
@@ -165,9 +158,6 @@ install_menu(){
     		echo "User selected Cancel."
 		fi
 		;;
-		Exit)
-		echo "You cancelled or have finished."
-		;;
 		*)
 		echo "You cancelled or have finished."
 		;;
@@ -179,8 +169,7 @@ start_menu(){
 	echo "start menu"
 	choice=$(whiptail --title "Start Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Start tools fom curated list." \
-	"Custom" "Start custom command if present." \
-	"Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
+	"Custom" "Start custom command if present." 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
 		List)
@@ -198,9 +187,6 @@ start_menu(){
 		else
     		echo "User selected Cancel."
 		fi
-		;;
-		Exit)
-		echo "You cancelled or have finished."
 		;;
 		*)
 		echo "You cancelled or have finished."
