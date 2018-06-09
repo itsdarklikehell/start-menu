@@ -143,27 +143,27 @@ echo "options menu"
 
 
 install_menu(){
-echo "install menu"
-## menu start
-	while [ use_whiptail = True ]
+	echo "install menu"
+	## menu start
+    while [ $use_whiptail = True ]
 	do
 	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
-	"List" "Select and install tools from a curated list." \
-	"Custom" "install custom tools via apt-get." \
+	"List" "Install tools fom curated list." \
+	"Custom" "Install custom command if present." \
 	"Exit" "Exit back to CLI" 3>&1 1>&2 2>&3)
 	exitstatus=$?
 	case $choice in
 		List)
 		echo "User selected: " $choice
-        instll_list_menu
+		install_list_menu
         ;;
-        Custom)
+		Custom)
 		echo "User selected: " $choice
-        choice=$(whiptail --inputbox "Please specify the package name to install:" 8 78 synaptic --title "Install Dialog" 3>&1 1>&2 2>&3)
+        choice=$(whiptail --inputbox "Please specify the package to instal:" 8 78 synaptic --title "Custom install Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
-    		echo "Ok, instaling:" $choice
-    		sudo apt-get install $choice
+    		echo "Ok, stating:" $choice
+    		bash $choice
             instll_done
 		else
     		echo "User selected Cancel."
@@ -180,8 +180,9 @@ echo "install menu"
 		exit
 		;;
 	esac
-    done
+	done ## menu end
 }
+
 
 start_menu(){
 	echo "start menu"
@@ -233,7 +234,7 @@ choice=$(whiptail --title "Start Tool" --radioist \
 "$option2" "$description2" Off 3>&1 1>&2 2>&3)
 }
 
-instll_list_menu(){
+install_list_menu(){
 echo "User selected: " $choice
 load_instll_tool_list
 choice=$(whiptail --title "Install Tool" --checklist \
