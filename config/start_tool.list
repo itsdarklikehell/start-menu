@@ -1,7 +1,9 @@
 #!/bin/bash
 
-    option1="Desktop"
-    description1="Raspbian desktop."
+#"$option1" "$description1" ON \
+#echo $option2 "$description2" Off
+    option1='"Desktop" "Raspbian desktop." ON'
+
     option2="Emulationstation"
     description2="Emulationstation frontend."
     option3="Kodi"
