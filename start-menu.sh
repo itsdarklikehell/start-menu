@@ -165,7 +165,7 @@ start_menu(){
 start_list_menu(){
 echo "User selected: " $choice
 
-#source $HOME/start-menu/configs/start-tool.list
+#source $HOME/start-menu/configs/start_tool.list
 
 choice=$(whiptail --title "Start Tool List" --radiolist \
 "Select tool to start" 20 78 4 \
@@ -185,7 +185,7 @@ esac
 install_list_menu(){
 echo "User selected: " $choice
 
-#source $HOME/start-menu/configs/install-tool.list
+#source $HOME/start-menu/configs/install_tool.list
 
 choice=$(whiptail --title "Install Tool List" --checklist \
 "Select tool to install" 20 78 4 \
