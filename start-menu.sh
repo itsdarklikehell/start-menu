@@ -92,8 +92,6 @@ main_menu(){
 option_menu(){
 echo "options menu"
 	## menu start
-    while [ $use_whiptail = True ]
-	do
 	choice=$(whiptail --title "Option Menu" --menu "Choose an option" 25 78 16 \
 	"Update-System" "Update system." \
 	"Update-start-menu" "Update startup-menu." \
@@ -137,16 +135,12 @@ echo "options menu"
 		use_whiptail="False"
 		exit
 		;;
-	esac
-	done ## menu end
 }
 
 
 install_menu(){
 	echo "install menu"
 	## menu start
-    while [ $use_whiptail = True ]
-	do
 	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Install tools fom curated list." \
 	"Custom" "Install custom package with apt-get." \
@@ -179,16 +173,12 @@ install_menu(){
 		use_whiptail="False"
 		exit
 		;;
-	esac
-	done ## menu end
 }
 
 
 start_menu(){
 	echo "start menu"
 	## menu start
-    while [ $use_whiptail = True ]
-	do
 	choice=$(whiptail --title "Start Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Start tools fom curated list." \
 	"Custom" "Start custom command if present." \
@@ -221,8 +211,6 @@ start_menu(){
 		use_whiptail="False"
 		exit
 		;;
-	esac
-	done ## menu end
 }
 
 start_list_menu(){
