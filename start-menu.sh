@@ -177,9 +177,6 @@ install_menu(){
 
 start_menu(){
 	echo "start menu"
-	## menu start
-    while [ $use_whiptail = True ]
-	do
 	choice=$(whiptail --title "Start Menu" --menu "Choose an option" 25 78 16 \
 	"List" "Start tools fom curated list." \
 	"Custom" "Start custom command if present." \
@@ -204,16 +201,11 @@ start_menu(){
 		;;
 		Exit)
 		echo "You cancelled or have finished."
-		use_whiptail="False"
-		exit
 		;;
 		*)
 		echo "You cancelled or have finished."
-		use_whiptail="False"
-		exit
 		;;
 	esac
-	done ## menu end
 }
 
 start_list_menu(){
