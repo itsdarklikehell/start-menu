@@ -191,7 +191,7 @@ echo "User selected: " $choice
 load_start_tool_list
 choice=$(whiptail --title "Start Tool" --radiolist \
 "Select tool to start" 20 78 4 \
-"$option1" "$description1" ON \
+$option1 \
 "$option2" "$description2" Off 3>&1 1>&2 2>&3)
 }
 
