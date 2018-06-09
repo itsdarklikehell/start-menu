@@ -15,20 +15,6 @@ disclaimer(){
 fi
 }
 
-load_start_tool_list(){
-source $HOME/start-menu/config/start_tool.list
-    echo "Option list loaded."
-    echo "containing $option_all"
-    whiptail --title " Finished Loading" --msgbox "Finished Loading tool list containing: $option_all." 8 78
-}
-
-load_install_tool_list(){
-source $HOME/start-menu/config/install_tool.list
-    echo "Option list loaded."
-    echo "containing $option_all"
-    whiptail --title " Finished Loading" --msgbox "Finished Loading tool list containing: $option_all." 8 78
-}
-
 start_done(){
 	echo "Finished starting: $choice"
 	whiptail --title " Finished Starting" --msgbox "Finished starting: $choice." 8 78
@@ -178,7 +164,6 @@ start_menu(){
 
 start_list_menu(){
 echo "User selected: " $choice
-load_start_tool_list
 choice=$(whiptail --title "Start Tool" --radiolist \
 "Select tool to start" 20 78 4 \
 "Desktop" "Raspbian Pixel Desktop." ON 3>&1 1>&2 2>&3)
@@ -187,7 +172,6 @@ choice=$(whiptail --title "Start Tool" --radiolist \
 
 install_list_menu(){
 echo "User selected: " $choice
-load_install_tool_list
 choice=$(whiptail --title "Install Tool" --checklist \
 "Select tool to install" 20 78 4 \
 "Desktop" "Raspbian Pixel Desktop." ON 3>&1 1>&2 2>&3)
