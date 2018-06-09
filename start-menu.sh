@@ -167,13 +167,9 @@ install_menu(){
 		;;
 		Exit)
 		echo "You cancelled or have finished."
-		use_whiptail="False"
-		exit
 		;;
 		*)
 		echo "You cancelled or have finished."
-		use_whiptail="False"
-		exit
 		;;
     esac
 }
