@@ -124,9 +124,7 @@ echo "options menu"
         ;;
         *)
 		echo "You cancelled or have finished."
-		use_whiptail="False"
-		exit
-		;;
+        ;;
 	esac
 }
 
