@@ -5,16 +5,23 @@ conf_dir="$HOME/start-menu/config/tools/$name"
 info_dir="$conf_dir/info"
 
 name=$(whiptail --inputbox "Please specify the NAME for the application" 8 78 --title "Name" 3>&1 1>&2 2>&3)
-command=$(whiptail --inputbox "Please specify the COMMAND for the applicaton" 8 78 --title "command" 3>&1 1>&2 2>&3)
-description=$(whiptail --inputbox "Please give a brief DESCRIPTION of the applicaton" 8 78 --title "description" 3>&1 1>&2 2>&3)
-packagename=$(whiptail --inputbox "Please specify the PACKAGENAME for the applicaton" 8 78 --title "packagename" 3>&1 1>&2 2>&3)
+whiptail --title "Confimation:" --msgbox "name is set to $name" 8 78
 
-make_runfiles
+command=$(whiptail --inputbox "Please specify the COMMAND for the applicaton" 8 78 --title "command" 3>&1 1>&2 2>&3)
+whiptail --title "Confimation:" --msgbox "command is set to $command" 8 78
+
+description=$(whiptail --inputbox "Please give a brief DESCRIPTION of the applicaton" 8 78 --title "description" 3>&1 1>&2 2>&3)
+whiptail --title "Confimation:" --msgbox "description is set to $description" 8 78
+
+packagename=$(whiptail --inputbox "Please specify the PACKAGENAME for the applicaton" 8 78 --title "packagename" 3>&1 1>&2 2>&3)
+whiptail --title "Confimation:" --msgbox "packagename is set to $packagename" 8 78
+
+#make_runfiles
 }
 
 make_runfiles(){
 make_info(){
-whiptail --title "creating $info_dir" --msgbox "creating $info_dir for $name" 8 78
+whiptail --title "creating '$info_dir'" --msgbox "creating '$info_dir' for '$name'" 8 78
 mkdir -p $info_dir
 whiptail --title "creating info files" --msgbox "creating info files for $name in $info_dir" 8 78
 echo $name > $info_dir/name
