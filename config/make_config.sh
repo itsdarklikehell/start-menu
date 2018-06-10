@@ -1,6 +1,6 @@
 #!/bin/bash
 menu(){
-
+configure(){
 conf_dir="$HOME/start-menu/config/tools/$name"
 info_dir="$conf_dir/info"
 
@@ -15,10 +15,7 @@ whiptail --title "Confimation:" --msgbox "description is set to $description" 8 
 
 packagename=$(whiptail --inputbox "Please specify the PACKAGENAME for the applicaton" 8 78 --title "packagename" 3>&1 1>&2 2>&3)
 whiptail --title "Confimation:" --msgbox "packagename is set to $packagename" 8 78
-
-#make_runfiles
 }
-
 make_runfiles(){
 make_info(){
 whiptail --title "creating '$info_dir'" --msgbox "creating '$info_dir' for '$name'" 8 78
@@ -98,6 +95,11 @@ make_install
 make_list
 whiptail --title "Creation complete" --msgbox "runfile creation for $name in $conf_dir is completed." 8 78
 }
+
+configure
+make_runfiles
+}
+
 
 
 menu
