@@ -14,16 +14,13 @@ make_runfiles
 
 make_runfiles(){
 make_info(){
-whiptail --title "creating $info_dir" --msgbox "creating $info_dir for $name." 8 78
+whiptail --title "creating $info_dir" --msgbox "creating $info_dir for $name" 8 78
 mkdir -p $info_dir
-whiptail --title "creating info files" --msgbox "creating info files for $name in $info_dir." 8 78
+whiptail --title "creating info files" --msgbox "creating info files for $name in $info_dir" 8 78
 echo $name > $info_dir/name
 echo $command >> $info_dir/command
 echo $description >> $info_dir/description
 echo $packagename >> $info_dir/packagename
-
-make_runfiles
-
 }
 make_start(){
 whiptail --title "creating start.sh" --msgbox "creating start.sh for $name in $conf_dir." 8 78
