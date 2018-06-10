@@ -53,7 +53,7 @@ cp $startlist $tmpfile
 echo "" >> $tmpfile
 echo "option_$name(){" >> $tmpfile
 echo "name=$name" >> $tmpfile
-echo "comamand=$command" >> $tmpfile
+echo "command=$command" >> $tmpfile
 echo "description=$description" >> $tmpfile
 echo "packagename=$packagename" >> $tmpfile
 echo "}" >> $tmpfile
@@ -78,7 +78,7 @@ cp $installlist $tmpfile
 echo "" >> $tmpfile
 echo "option_$name(){" >> $tmpfile
 echo "name=$name" >> $tmpfile
-echo "comamand=$command" >> $tmpfile
+echo "command=$command" >> $tmpfile
 echo "description=$description" >> $tmpfile
 echo "packagename=$packagename" >> $tmpfile
 echo "}" >> $tmpfile
