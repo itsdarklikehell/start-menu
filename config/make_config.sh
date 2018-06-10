@@ -52,7 +52,7 @@ whiptail --title "creating backup of $startlist" --msgbox "creating backup of $s
 cp $startlist $backupfile
 
 whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
-cat $startlist > $tmpfile
+cp $startlist $tmpfile
 echo "$name(){"
 echo "name=$name" >> $tmpfile
 echo "comamand=$command" >> $tmpfile
@@ -75,7 +75,7 @@ whiptail --title "creating backup of $installlist" --msgbox "creating backup of 
 cp $installlist $backupfile
 
 whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
-cat $installlist > $tmpfile
+cp $installlist $tmpfile
 echo "$name(){"
 echo "name=$name" >> $tmpfile
 echo "comamand=$command" >> $tmpfile
@@ -89,6 +89,8 @@ cp $tmpfile $installlist
 whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
 rm $tmpfile
 }
+add_to_startlist
+add_to_installlist
 }
 
 make_info
