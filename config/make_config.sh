@@ -43,26 +43,50 @@ whiptail --title "Creation complete" --msgbox "runfile creation for $name in $co
 
 add_to_startlist(){
 startlist=$HOME/start-menu/config/start_tool.list
-tmpfile=/tmp/start_tool.list
+backupfile=$startlist.old
+tmpfile=/tmp/start_tool.list.tmp
 
-whiptail --title "creating start_tool.list" --msgbox "creating start_tool.list containing info for $name in $startlist." 8 78
+whiptail --title "creating backup of $startlist" --msgbox "creating backup of $startlist in $backupfile." 8 78
+cp $startlist $backupfile
+
+whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
 cat $startlist > $tmpfile
+echo "$name(){"
+echo "name=$name" >> $tmpfile
+echo "comamand=$command" >> $tmpfile
+echo "description=$description" >> $tmpfile
+echo "packagename=$packagename" >> $tmpfile
+echo "}" >> $tmpfile
+echo "$name" >> $tmpfile
 
-echo "" >> $tmpfile
-
+whiptail --title "creating new $startlist" --msgbox "creating new $startlist from $tmpfile" 8 78
+cp $tmpfile $startlist
+whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
+rm $tmpfile
 }
 
 add_to_installlist(){
 installlist=$HOME/start-menu/config/install_tool.list
-tmpfile=/tmp/install_tool.list
+backupfile=$installlist.old
+tmpfile=/tmp/install_tool.list.tmp
 
-whiptail --title "creating install_tool.list" --msgbox "creating install_tool.list containing info for $name in $insalllist." 8 78
+whiptail --title "creating backup of $installlist" --msgbox "creating backup of $installlist in $backupfile." 8 78
+cp $installlist $backupfile
+
+whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
 cat $installlist > $tmpfile
+echo "$name(){"
+echo "name=$name" >> $tmpfile
+echo "comamand=$command" >> $tmpfile
+echo "description=$description" >> $tmpfile
+echo "packagename=$packagename" >> $tmpfile
+echo "}" >> $tmpfile
+echo "$name" >> $tmpfile
 
-echo '"name=$name"' >> $tmpfile
-echo "" >> $tmpfile
-
-# echo "" >> $tmpfile
+whiptail --title "creating new $installist" --msgbox "creating new $installist from $tmpfile" 8 78
+cp $tmpfile $installlist
+whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
+rm $tmpfile
 }
 
 
