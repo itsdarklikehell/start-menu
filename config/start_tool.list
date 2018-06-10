@@ -1,9 +1,12 @@
 #!/bin/bash
+number=0
 
-option_Desktop(){
-name=Desktop
-command=startx
-description=Raspbian Pixel Desktop.
-packagename=pixel-desktop
+option_1(){
+option_number=1
+name=Default
+command=Default
+description=Default
+packagename=Default
 }
-option_Desktop
+option_1
+number=1
