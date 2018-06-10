@@ -1,10 +1,5 @@
 #!/bin/bash
 
-#usage:
-#optionX="optionname"
-#descriptionX="description"
-#packagenameX="packagenameX"
-
     option1="Emulationstation"
     description1="Emulationstation/retropie."
     packagename1="emulationstation"

@@ -43,10 +43,26 @@ whiptail --title "Creation complete" --msgbox "runfile creation for $name in $co
 
 add_to_startlist(){
 startlist=$HOME/start-menu/config/start_tool.list
+tmpfile=/tmp/start_tool.list
+
+whiptail --title "creating start_tool.list" --msgbox "creating start_tool.list containing info for $name in $startlist." 8 78
+cat $startlist > $tmpfile
+
+echo "" >> $tmpfile
+
 }
 
 add_to_installlist(){
-installlist=$HOME/start-menu/config/instal_tool.list
+installlist=$HOME/start-menu/config/install_tool.list
+tmpfile=/tmp/install_tool.list
+
+whiptail --title "creating install_tool.list" --msgbox "creating install_tool.list containing info for $name in $insalllist." 8 78
+cat $installlist > $tmpfile
+
+echo '"name=$name"' >> $tmpfile
+echo "" >> $tmpfile
+
+# echo "" >> $tmpfile
 }
 
 
