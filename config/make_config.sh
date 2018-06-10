@@ -18,7 +18,7 @@ whiptail --title "Confimation:" --msgbox "packagename is set to $packagename" 8 
 }
 make_runfiles(){
 make_info(){
-whiptail --title "creating '$info_dir'" --msgbox "creating '$info_dir' for '$name'" 8 78
+whiptail --title "creating $info_dir" --msgbox "creating $info_dir for $name" 8 78
 mkdir -p $info_dir
 whiptail --title "creating info files" --msgbox "creating info files for $name in $info_dir" 8 78
 echo $name > $info_dir/name
