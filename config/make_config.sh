@@ -1,8 +1,8 @@
 #!/bin/bash
 menu(){
 configure(){
-conf_dir="$HOME/start-menu/config/tools/$name"
-info_dir="$conf_dir/info"
+conf_dir=$HOME/start-menu/config/tools/$name
+info_dir=$conf_dir/info
 
 name=$(whiptail --inputbox "Please specify the NAME for the application" 8 78 --title "Name" 3>&1 1>&2 2>&3)
 whiptail --title "Confimation:" --msgbox "name is set to $name" 8 78
