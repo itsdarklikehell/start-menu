@@ -63,6 +63,8 @@ echo "options menu"
     choice=$(whiptail --title "Option Menu" --menu "Choose an option" 25 78 16 \
 	"Update-System" "Update system." \
 	"Update-start-menu" "Update startup-menu." \
+	"Make-Config" "Make config files for starting/installing applications" \
+	"Remove-Config" "Remove config files for starting/installing applications" \
     "Raspi-Config" "Configure raspbian." \
     "RetroPie-Setup" "Configure Retropie." \
     "Cleanup-System" "Cleanup system." 3>&1 1>&2 2>&3)
@@ -84,6 +86,14 @@ echo "options menu"
         echo "startup-menu update finished"
         use_whiptail="False"
         exit
+		;;
+		Make-Config)
+		echo "User selected: " $choice
+		bash $HOME/start-menu/config/make_config.sh
+		;;
+		Remove-Config)
+		echo "User selected: " $choice
+		bash $HOME/start-menu/config/remove_config.sh
 		;;
         Raspi-Config)
 		echo "User selected: " $choice
@@ -165,7 +175,7 @@ start_menu(){
 start_list_menu(){
 echo "User selected: " $choice
 
-#source $HOME/start-menu/configs/start_tool.list
+source $HOME/start-menu/configs/start_tool.list
 
 choice=$(whiptail --title "Start Tool List" --radiolist \
 "Select tool to start" 20 78 4 \
@@ -185,7 +195,7 @@ esac
 install_list_menu(){
 echo "User selected: " $choice
 
-#source $HOME/start-menu/configs/install_tool.list
+source $HOME/start-menu/configs/install_tool.list
 
 choice=$(whiptail --title "Install Tool List" --checklist \
 "Select tool to install" 20 78 4 \
