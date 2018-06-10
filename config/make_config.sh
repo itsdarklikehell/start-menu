@@ -1,10 +1,12 @@
 #!/bin/bash
+menu(){
 name=$(whiptail --inputbox "Please specify the NAME for the application" 8 78 --title "Name" 3>&1 1>&2 2>&3)
 command=$(whiptail --inputbox "Please specify the COMMAND for the applicaton" 8 78 --title "command" 3>&1 1>&2 2>&3)
 description=$(whiptail --inputbox "Please give a brief DESCRIPTION of the applicaton" 8 78 --title "description" 3>&1 1>&2 2>&3)
 packagename=$(whiptail --inputbox "Please specify the PACKAGENAME for the applicaton" 8 78 --title "packagename" 3>&1 1>&2 2>&3)
 conf_dir="$HOME/start-menu/config/tools/$name"
 info_dir="$conf_dir/info"
+}
 
 make_runfiles(){
 make_info(){
@@ -15,6 +17,9 @@ echo $name > $info_dir/name
 echo $command >> $info_dir/command
 echo $description >> $info_dir/description
 echo $packagename >> $info_dir/packagename
+
+make_runfiles
+
 }
 make_start(){
 whiptail --title "creating start.sh" --msgbox "creating start.sh for $name in $conf_dir." 8 78
@@ -36,10 +41,17 @@ make_install
 whiptail --title "Creation complete" --msgbox "runfile creation for $name in $conf_dir is completed." 8 78
 }
 
-add_to_startlist(){}
-echo "if [ $name = ]; then"
-add_to_installlist(){}
+add_to_startlist(){
+startlist=""
+if [ $conf_dir/start.sh ]; then
+fi
+}
+
+add_to_installlist(){
+installlist=""
+if [ $conf_dir/install.sh ]; then
+fi
+}
 
 
-
-make_runfiles
+menu
