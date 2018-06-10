@@ -35,4 +35,11 @@ make_start
 make_install
 whiptail --title "Creation complete" --msgbox "runfile creation for $name in $conf_dir is completed." 8 78
 }
+
+add_to_startlist(){}
+echo "if [ $name = ]; then"
+add_to_installlist(){}
+
+
+
 make_runfiles
