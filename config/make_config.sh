@@ -43,14 +43,10 @@ whiptail --title "Creation complete" --msgbox "runfile creation for $name in $co
 
 add_to_startlist(){
 startlist=""
-if [ $conf_dir/start.sh ]; then
-fi
 }
 
 add_to_installlist(){
 installlist=""
-if [ $conf_dir/install.sh ]; then
-fi
 }
 
 
