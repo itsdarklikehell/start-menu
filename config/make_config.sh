@@ -107,11 +107,11 @@ make_start_tools_menu(){
 
 header(){
 echo "#!/bin/bash" > $tmpfile
-echo 'choice=$(whiptail --title "Start Tool List" --radiolist \ ' >> $tmpfile
-echo '"Select tool to start" 20 78 4 \ ' >> $tmpfile
+echo 'choice=$(whiptail --title "Start Tool List" --radiolist \\' >> $tmpfile
+echo '"Select tool to start" 20 78 4 \\' >> $tmpfile
 }
 entry(){
-echo "'$name' '$description' ON \ " >> $tmpfile
+echo "'$name' '$description' ON \\" >> $tmpfile
 }
 footer(){
 echo "'Exit' 'Exit to CLI.' ON 3>&1 1>&2 2>&3)" >> $tmpfile
