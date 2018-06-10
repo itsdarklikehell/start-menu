@@ -105,11 +105,18 @@ make_start_tools_menu(){
 	start_tools_menu=$HOME/start-menu/config/tools/start_tools_menu.sh
 	tmpfile=/tmp/start_tools_menu.sh
 
-
-entry(){
-echo "'$name' '$description' ON \" >> $tmpfile
+header(){
+echo "#!/bin/bash" > $tmpfile
+echo 'choice=$(whiptail --title "Start Tool List" --radiolist \ ' >> $tmpfile
+echo '"Select tool to start" 20 78 4 \ ' >> $tmpfile
 }
-
+entry(){
+echo "'$name' '$description' ON \ " >> $tmpfile
+}
+footer(){
+echo "'Exit' 'Exit to CLI.' ON 3>&1 1>&2 2>&3)" >> $tmpfile
+echo 'case $choice in' >> $tmpfile
+}
 response(){
 echo "	$name)" >> $tmpfile
 echo '	echo "User selected: " $choice' >> $tmpfile
@@ -117,15 +124,7 @@ echo "    name=$name" >> $tmpfile
 echo '    bash $HOME/start-menu/config/tools/$name/start.sh' >> $tmpfile
 echo '    ;;' >> $tmpfile
 }
-
-echo '#!/bin/bash' > $tmpfile
-echo 'choice=$(whiptail --title "Start Tool List" --radiolist \' >> $tmpfile
-echo '"Select tool to start" 20 78 4 \' >> $tmpfile
-entry
-echo "'Exit' 'Exit to CLI.' ON 3>&1 1>&2 2>&3)" >> $tmpfile
-
-echo 'case $choice in' >> $tmpfile
-response
+ending(){
 echo '	*)' >> $tmpfile
 echo '	echo "You cancelled or have finished."' >> $tmpfile
 echo '	;;' >> $tmpfile
@@ -133,6 +132,13 @@ echo '	Exit)' >> $tmpfile
 echo '	echo "You cancelled or have finished."' >> $tmpfile
 echo '	;;' >> $tmpfile
 echo 'esac' >> $tmpfile
+}
+header
+entry
+footer
+response
+ending
+
 cp $tmpfile $start_tools_menu
 rm $tmpfile
 chmod +x $start_tools_menu
