@@ -1,11 +1,15 @@
 #!/bin/bash
 menu(){
+
+conf_dir="$HOME/start-menu/config/tools/$name"
+info_dir="$conf_dir/info"
+
 name=$(whiptail --inputbox "Please specify the NAME for the application" 8 78 --title "Name" 3>&1 1>&2 2>&3)
 command=$(whiptail --inputbox "Please specify the COMMAND for the applicaton" 8 78 --title "command" 3>&1 1>&2 2>&3)
 description=$(whiptail --inputbox "Please give a brief DESCRIPTION of the applicaton" 8 78 --title "description" 3>&1 1>&2 2>&3)
 packagename=$(whiptail --inputbox "Please specify the PACKAGENAME for the applicaton" 8 78 --title "packagename" 3>&1 1>&2 2>&3)
-conf_dir="$HOME/start-menu/config/tools/$name"
-info_dir="$conf_dir/info"
+
+make_runfiles
 }
 
 make_runfiles(){
@@ -35,12 +39,7 @@ echo "name=$(cat $HOME/start-menu/config/tools/$name/info/name)" >> $conf_dir/in
 echo "sudo apt get update" >> $conf_dir/install.sh
 echo "sudo apt-get install $packagename" >> $conf_dir/install.sh
 }
-make_info
-make_start
-make_install
-whiptail --title "Creation complete" --msgbox "runfile creation for $name in $conf_dir is completed." 8 78
-}
-
+make_list(){
 add_to_startlist(){
 startlist=$HOME/start-menu/config/start_tool.list
 backupfile=$startlist.old
@@ -64,7 +63,6 @@ cp $tmpfile $startlist
 whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
 rm $tmpfile
 }
-
 add_to_installlist(){
 installlist=$HOME/start-menu/config/install_tool.list
 backupfile=$installlist.old
@@ -87,6 +85,14 @@ whiptail --title "creating new $installist" --msgbox "creating new $installist f
 cp $tmpfile $installlist
 whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
 rm $tmpfile
+}
+}
+
+make_info
+make_start
+make_install
+make_list
+whiptail --title "Creation complete" --msgbox "runfile creation for $name in $conf_dir is completed." 8 78
 }
 
 
