@@ -1,15 +1,10 @@
 #!/bin/bash
 
-#usage:
-#optionX="optionname"
-#descriptionX="description"
-#packagenameX="packagenameX"
-
     option1="Emulationstation"
     description1="Emulationstation/retropie."
     packagename1="emulationstation"
 
-	option2="Kodi"
+    option2="Kodi"
     description2="Kodi mediacentre."
     packagename2="kodi"
 
@@ -20,12 +15,9 @@
 #list all
 option_all="$option1 $option2 $option3"
 description_all="$description1 $description2 $description3"
-packagename_all="$packagename1 $packagename2 $packagename3"name=cmatrix
-comamand=cmatrix 
-description=cmatrix
-packagename=cmatrix
-}
-cmatrix
+
+packagename_all="$packagename1 $packagename2 $packagename3"
+
 
 name=Kodi
 comamand=
@@ -48,14 +40,6 @@ packagename=
 }
 
 
-name=cmatrix
-comamand=cmatrix
-description=cmatrix
-packagename=cmatrix
-}
-cmatrix
-
-cmatrix(){
 name=cmatrix
 comamand=cmatrix
 description=cmatrix

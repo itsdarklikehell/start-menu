@@ -54,11 +54,3 @@ description=cmatrix
 packagename=cmatrix
 }
 cmatrix
-
-cmatrix(){
-name=cmatrix
-comamand=cmatrix
-description=cmatrix
-packagename=cmatrix
-}
-cmatrix
