@@ -42,11 +42,11 @@ whiptail --title "Creation complete" --msgbox "runfile creation for $name in $co
 }
 
 add_to_startlist(){
-startlist=""
+startlist=$HOME/start-menu/config/start_tool.list
 }
 
 add_to_installlist(){
-installlist=""
+installlist=$HOME/start-menu/config/instal_tool.list
 }
 
 
