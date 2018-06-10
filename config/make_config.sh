@@ -53,6 +53,7 @@ cp $startlist $backupfile
 
 whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
 cp $startlist $tmpfile
+echo "" >> $tmpfile
 echo "$name(){"
 echo "name=$name" >> $tmpfile
 echo "comamand=$command" >> $tmpfile
@@ -76,6 +77,8 @@ cp $installlist $backupfile
 
 whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
 cp $installlist $tmpfile
+
+echo "" >> $tmpfile
 echo "$name(){"
 echo "name=$name" >> $tmpfile
 echo "comamand=$command" >> $tmpfile
