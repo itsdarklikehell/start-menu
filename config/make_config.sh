@@ -51,13 +51,13 @@ cp $startlist $backupfile
 #whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
 cp $startlist $tmpfile
 echo "" >> $tmpfile
-echo "$name(){" >> $tmpfile
+echo "option_$name(){" >> $tmpfile
 echo "name=$name" >> $tmpfile
 echo "comamand=$command" >> $tmpfile
 echo "description=$description" >> $tmpfile
 echo "packagename=$packagename" >> $tmpfile
 echo "}" >> $tmpfile
-echo "$name" >> $tmpfile
+echo "option_$name" >> $tmpfile
 
 #whiptail --title "creating new $startlist" --msgbox "creating new $startlist from $tmpfile" 8 78
 cp $tmpfile $startlist
@@ -76,13 +76,13 @@ cp $installlist $backupfile
 cp $installlist $tmpfile
 
 echo "" >> $tmpfile
-echo "$name(){" >> $tmpfile
+echo "option_$name(){" >> $tmpfile
 echo "name=$name" >> $tmpfile
 echo "comamand=$command" >> $tmpfile
 echo "description=$description" >> $tmpfile
 echo "packagename=$packagename" >> $tmpfile
 echo "}" >> $tmpfile
-echo "$name" >> $tmpfile
+echo "option_$name" >> $tmpfile
 
 #whiptail --title "creating new $installist" --msgbox "creating new $installist from $tmpfile" 8 78
 cp $tmpfile $installlist
