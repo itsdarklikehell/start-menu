@@ -93,7 +93,7 @@ menu(){
 					whiptail --title "creating new $installist" --msgbox "creating new $installist from $tmpfile containing $number entries." 8 78
 					cp $tmpfile $installlist
 					fi
-					
+
 					#whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
 					rm $tmpfile
 					}
@@ -104,21 +104,24 @@ menu(){
 make_start_tools_menu(){
 	start_tools_menu=$HOME/start-menu/config/tools/start_tools_menu.sh
 	tmpfile=/tmp/start_tools_menu.sh
-	
-echo '#!/bin/bash' > $tmpfile
-echo 'choice=$(whiptail --title "Start Tool List" --radiolist \' >> $tmpfile
-echo '"Select tool to start" 20 78 4 \' >> $tmpfile
-
-echo "'$name' '$description' ON 3>&1 1>&2 2>&3)" >> $tmpfile
-
-echo 'case $choice in' >> $tmpfile
-
+entry(){
+echo "'$name' '$description' ON" >> $tmpfile
+}
+response(){
 echo "	$name)" >> $tmpfile
 echo '	echo "User selected: " $choice' >> $tmpfile
 echo "    name=$name" >> $tmpfile
 echo '    bash $HOME/start-menu/config/tools/$name/start.sh' >> $tmpfile
 echo '    ;;' >> $tmpfile
+}
+echo '#!/bin/bash' > $tmpfile
+echo 'choice=$(whiptail --title "Start Tool List" --radiolist \' >> $tmpfile
+echo '"Select tool to start" 20 78 4 \' >> $tmpfile
+entry
+echo "'$name' '$description' ON 3>&1 1>&2 2>&3)" >> $tmpfile
 
+echo 'case $choice in' >> $tmpfile
+response
 echo '	*)' >> $tmpfile
 echo '	echo "You cancelled or have finished."' >> $tmpfile
 echo '	;;' >> $tmpfile
