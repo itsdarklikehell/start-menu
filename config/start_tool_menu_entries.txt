@@ -1,2 +1,0 @@
-"Desktop" "Raspbian Pixel Desktop." ON \
-"Kodi" "Kodi Mediacentre." OFF 
