@@ -12,3 +12,4 @@ case $choice in
 	echo "You cancelled or have finished."
 	;;
 esac
+start_done

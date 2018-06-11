@@ -58,7 +58,7 @@ main_menu(){
 }
 
 option_menu(){
-bash config/option-menu.sh
+bash $HOME/start-menu/config/option-menu.sh
 }
 
 install_menu(){
@@ -69,20 +69,10 @@ install_menu(){
 	exitstatus=$?
 	case $choice in
 		List)
-		echo "User selected: " $choice
-		install_list_menu
+		bash $HOME/start-menu/config/install-menu-list.sh
         ;;
 		Custom)
-		echo "User selected: " $choice
-        choice=$(whiptail --inputbox "Please specify the package to install:" 8 78 synaptic --title "Custom install Dialog" 3>&1 1>&2 2>&3)
-		exitstatus=$?
-		if [ $exitstatus = 0 ]; then
-    		echo "Ok, instaling:" $choice
-    		sudo apt-get install $choice
-            install_done
-		else
-    		echo "User selected Cancel."
-		fi
+		bash $HOME/start-menu/config/install-menu-custom.sh
 		;;
 		*)
 		echo "You cancelled or have finished."
@@ -98,33 +88,15 @@ start_menu(){
 	exitstatus=$?
 	case $choice in
 		List)
-		echo "User selected: " $choice
-		start_list_menu
+        bash $HOME/start-menu/config/start-menu-list.sh
         ;;
 		Custom)
-		echo "User selected: " $choice
-        choice=$(whiptail --inputbox "Please specify the command to run:" 8 78 synaptic --title "Custom comand Dialog" 3>&1 1>&2 2>&3)
-		exitstatus=$?
-		if [ $exitstatus = 0 ]; then
-    		echo "Ok, stating:" $choice
-    		bash $choice
-            start_done
-		else
-    		echo "User selected Cancel."
-		fi
+		bash $HOME/start-menu/config/start-menu-custom.sh
 		;;
 		*)
 		echo "You cancelled or have finished."
 		;;
 	esac
-}
-
-start_list_menu(){
-bash $HOME/start-menu/config/start-menu-list.sh
-}
-
-install_list_menu(){
-bash $HOME/start-menu/config/install-menu-list.sh
 }
 
 config
