@@ -1,0 +1,10 @@
+
+option_1(){
+option_number=1
+name=EmulationStation
+command=emulationstation
+description=EmulationStation Frontend for RetroArch.
+packagename=emulationstation
+}
+option_1
+number=1
