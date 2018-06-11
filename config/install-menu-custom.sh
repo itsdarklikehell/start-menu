@@ -1,5 +1,8 @@
 #!/bin/bash
-echo "User selected: " $choice
+install_done(){
+	echo "Finished instaling: $choice"
+	whiptail --title " Finished Installing" --msgbox "Finished installing: $choice." 8 78
+}
         choice=$(whiptail --inputbox "Please specify the package to install:" 8 78 synaptic --title "Custom install Dialog" 3>&1 1>&2 2>&3)
 		exitstatus=$?
 		if [ $exitstatus = 0 ]; then
