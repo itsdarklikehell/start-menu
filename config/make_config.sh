@@ -23,33 +23,79 @@ menu(){
 				echo $packagename >> $info_dir/packagename
 				}
 			make_start(){
-				#whiptail --title "creating start.sh" --msgbox "creating start.sh for $name in $conf_dir." 8 78
-				echo "#!/bin/bash" > $conf_dir/start.sh
-				echo "name=$(cat $HOME/start-menu/config/tools/$name/info/name)" >> $conf_dir/start.sh
-				echo "command=$(cat $HOME/start-menu/config/tools/$name/info/command)" >> $conf_dir/start.sh
-				echo "bash $command" >> $conf_dir/start.sh
+				startorinstall="start"
+					#whiptail --title "creating start.sh" --msgbox "creating start.sh for $name in $conf_dir." 8 78
+				echo "#!/bin/bash" > $conf_dir/$startorinstall.sh
+				echo "name=$(cat $HOME/start-menu/config/tools/$name/info/name)" >> $conf_dir/$startorinstall.sh
+				echo "command=$(cat $HOME/start-menu/config/tools/$name/info/command)" >> $conf_dir/$startorinstall.sh
+				echo "bash $command" >> $conf_dir/$startorinstall.sh
 				}
 			make_install(){
+            startorinstall="install"
 				#whiptail --title "creating install.sh" --msgbox "creating install.sh for $name in $conf_dir." 8 78
-				echo "#!/bin/bash" > $conf_dir/install.sh
-				echo "name=$(cat $HOME/start-menu/config/tools/$name/info/name)" >> $conf_dir/install.sh
-				echo "sudo apt get update" >> $conf_dir/install.sh
-				echo "sudo apt-get install $packagename" >> $conf_dir/install.sh
+				echo "#!/bin/bash" > $conf_dir/$startorinstall.sh
+				echo "name=$(cat $HOME/start-menu/config/tools/$name/info/name)" >> $conf_dir/startorinstall.sh
+				echo "sudo apt get update" >> $conf_dir/startorinstall.sh
+				echo "sudo apt-get install $packagename" >> $conf_dir/startorinstall.sh
 				}
 			make_list(){
+
+            make_tools_menu(){
+	tools_menu=$HOME/start-menu/config/tools/$startorinstall_tools_menu.sh
+	tmpfile=/tmp/$startorinstall_tools_menu.sh
+header(){
+	echo "#!/bin/bash" > $tmpfile
+	echo 'choice=$(whiptail --title "$startorinstall Tool List" --radiolist \\' >> $tmpfile
+	echo '"Select tool to $startorinstall" 20 78 4 \\' >> $tmpfile
+}
+entry(){
+	echo "'$name' '$description' ON \\" >> $tmpfile
+}
+footer(){
+	echo "'Exit' 'Exit to CLI.' ON 3>&1 1>&2 2>&3)" >> $tmpfile
+	echo 'case $choice in' >> $tmpfile
+}
+response(){
+	echo "	$name)" >> $tmpfile
+	echo '	echo "User selected: " $choice' >> $tmpfile
+	echo "    name=$name" >> $tmpfile
+	echo '    bash $HOME/start-menu/config/tools/$name/$startorinstall.sh' >> $tmpfile
+	echo '    ;;' >> $tmpfile
+}
+ending(){
+	echo '	*)' >> $tmpfile
+	echo '	echo "You cancelled or have finished."' >> $tmpfile
+	echo '	;;' >> $tmpfile
+	echo '	Exit)' >> $tmpfile
+	echo '	echo "You cancelled or have finished."' >> $tmpfile
+	echo '	;;' >> $tmpfile
+	echo 'esac' >> $tmpfile
+}
+header
+entry
+footer
+response
+ending
+
+cp $tmpfile $startorinstall_tools_menu
+rm $tmpfile
+chmod +x $startorinstall_tools_menu
+#bash $start_tools_menu
+}
 				add_to_startlist(){
-					startlist=$HOME/start-menu/config/start_tool.list
-					backupfile=$startlist.old
-					tmpfile=/tmp/start_tool.list.tmp
+                	startorinstall="start"
+					$startorinstalllist=$HOME/start-menu/config/$startorinstall_tool.list
+					backupfile=$startorinstalllist.old
+					tmpfile=/tmp/$startorinstall_tool.list.tmp
 					#whiptail --title "creating backup of $startlist" --msgbox "creating backup of $startlist in $backupfile." 8 78
-					cp $startlist $backupfile
+					cp $startorinstall $backupfile
 					#whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
-					cp $startlist $tmpfile
+					cp $startorinstall $tmpfile
 					if [[ ! -z $(grep "$name" "$tmpfile") ]];
 					then
 					whiptail --title "Entry FOUND skipping..." --msgbox "Entry for $name FOUND skipping..." 8 78
 					else
-					source $startlist
+					source $startorinstalllist
 					number=$((number+1))
 					echo "" >> $tmpfile
 					echo "option_$number(){" >> $tmpfile
@@ -62,23 +108,25 @@ menu(){
 					echo "option_$number" >> $tmpfile
 					echo "number=$number" >> $tmpfile
 					whiptail --title "creating new $startlist" --msgbox "creating new $startlist from $tmpfile containing $number entries." 8 78
-					cp $tmpfile $startlist
-					fi
+					cp $tmpfile $startorinstall
+					make_tools_menu
+                    fi
 					#whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
 					rm $tmpfile
 					}
 				add_to_installlist(){
-					installlist=$HOME/start-menu/config/install_tool.list
-					backupfile=$installlist.old
-					tmpfile=/tmp/install_tool.list.tmp
+                startorinstall="install"
+					$startorinstalllist=$HOME/start-menu/config/$startorinstall_tool.list
+					backupfile=$startorinstalllist.old
+					tmpfile=/tmp/$startorinstall_tool.list.tmp
 					#whiptail --title "creating backup of $installlist" --msgbox "creating backup of $installlist in $backupfile." 8 78
-					cp $installlist $backupfile
+					cp $startorinstalllist $backupfile
 					#whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
-					cp $installlist $tmpfile
+					cp $startorinstalllist $tmpfile
 					if [[ ! -z $(grep "$name" "$tmpfile") ]]; then
 					whiptail --title "Entry FOUND skipping..." --msgbox "Entry for $name FOUND skipping..." 8 78
 					else
-					source $installlist
+					source $startorinstalllist
 					number=$((number+1))
 					echo "" >> $tmpfile
 					echo "option_$number(){" >> $tmpfile
@@ -90,70 +138,23 @@ menu(){
 					echo "}" >> $tmpfile
 					echo "option_$number" >> $tmpfile
 					echo "number=$number" >> $tmpfile
-					whiptail --title "creating new $installist" --msgbox "creating new $installist from $tmpfile containing $number entries." 8 78
-					cp $tmpfile $installlist
-					fi
+					whiptail --title "creating new $startorinstalllist" --msgbox "creating new $$startorinstalllist from $tmpfile containing $number entries." 8 78
+					cp $tmpfile $startorinstalllist
+					make_tools_menu
+                    fi
 
 					#whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
 					rm $tmpfile
 					}
 				add_to_startlist
 				add_to_installlist
+
 				}
-
-make_start_tools_menu(){
-	start_tools_menu=$HOME/start-menu/config/tools/start_tools_menu.sh
-	tmpfile=/tmp/start_tools_menu.sh
-
-header(){
-echo "#!/bin/bash" > $tmpfile
-echo 'choice=$(whiptail --title "Start Tool List" --radiolist \\' >> $tmpfile
-echo '"Select tool to start" 20 78 4 \\' >> $tmpfile
-}
-entry(){
-echo "'$name' '$description' ON \\" >> $tmpfile
-}
-footer(){
-echo "'Exit' 'Exit to CLI.' ON 3>&1 1>&2 2>&3)" >> $tmpfile
-echo 'case $choice in' >> $tmpfile
-}
-response(){
-echo "	$name)" >> $tmpfile
-echo '	echo "User selected: " $choice' >> $tmpfile
-echo "    name=$name" >> $tmpfile
-echo '    bash $HOME/start-menu/config/tools/$name/start.sh' >> $tmpfile
-echo '    ;;' >> $tmpfile
-}
-ending(){
-echo '	*)' >> $tmpfile
-echo '	echo "You cancelled or have finished."' >> $tmpfile
-echo '	;;' >> $tmpfile
-echo '	Exit)' >> $tmpfile
-echo '	echo "You cancelled or have finished."' >> $tmpfile
-echo '	;;' >> $tmpfile
-echo 'esac' >> $tmpfile
-}
-header
-entry
-footer
-response
-ending
-
-cp $tmpfile $start_tools_menu
-rm $tmpfile
-chmod +x $start_tools_menu
-bash $start_tools_menu
-	}
-
-#make_install_tools_menu(){}
-
 
 make_info
 make_start
 make_install
 make_list
-make_start_tools_menu
-#make_install_tools_menu
 
 whiptail --title "Creation complete" --msgbox "runfile creation for $name in $conf_dir is completed." 8 78
 if (whiptail --title "Add another>" --yesno "Do you want to make another entry?" 8 78) then
