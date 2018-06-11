@@ -120,11 +120,11 @@ start_menu(){
 }
 
 start_list_menu(){
-bash config/start-menu-list.sh
+bash $HOME/start-menu/config/start-menu-list.sh
 }
 
 install_list_menu(){
-bash config/install-menu-list.sh
+bash $HOME/start-menu/config/install-menu-list.sh
 }
 
 config
