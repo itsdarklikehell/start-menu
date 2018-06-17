@@ -38,82 +38,64 @@ menu(){
 				}
 			make_list(){
 				add_to_startlist(){
-					startlist=$HOME/start-menu/config/start_tool.list
-					backupfile=$startlist.old
-					tmpfile=/tmp/start_tool.list.tmp
+					curntlist=$HOME/start-menu/config/start-menu-list.sh
+					newlist=$curntlist.new
+					backupfile=$curntlist.old
+					tmpfile=$curntlist.tmp
 					#whiptail --title "creating backup of $startlist" --msgbox "creating backup of $startlist in $backupfile." 8 78
-					cp $startlist $backupfile
+					cp $curntlist $backupfile
 					#whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
-					cp $startlist $tmpfile
-					if [[ ! -z $(grep "$name" "$tmpfile") ]];
-					then
-					whiptail --title "Entry FOUND skipping..." --msgbox "Entry for $name FOUND skipping..." 8 78
-					else
-					source $startlist
-					number=$((number+1))
-					echo "" >> $tmpfile
-					echo "option_$number(){" >> $tmpfile
-					echo "option_number=$number" >> $tmpfile
-					echo "name=$name" >> $tmpfile
-					echo "command=$command" >> $tmpfile
-					echo "description=$description" >> $tmpfile
-					echo "packagename=$packagename" >> $tmpfile
-					echo "}" >> $tmpfile
-					echo "option_$number" >> $tmpfile
-					echo "number=$number" >> $tmpfile
-					whiptail --title "creating new $startlist" --msgbox "creating new $startlist from $tmpfile containing $number entries." 8 78
-					cp $tmpfile $startlist
-					make_tools_menu
-                    fi
-					#whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
-					rm $tmpfile
+					echo  $(head -n -5 $curntlist) > $tmpfile				
+					echo '$name)' >> $tmpfile
+					echo 'name="$name"' >> $tmpfile
+					echo 'bash $HOME/start-menu/config/tools/$name/start.sh' >> $tmpfile
+					echo ';;' >> $tmpfile
+					
+					echo '*)' >> $tmpfile
+					echo 'echo "You cancelled or have finished."' >> $tmpfile
+					echo ';;' >> $tmpfile
+					echo 'esac' >> $tmpfile
+					echo 'done' >> $tmpfile
+					
+					whiptail --title "creating new $curntlist" --msgbox "creating new $curntlist." 8 78
+					cp $tmpfile $newlist
 					}
 				add_to_installlist(){
-					installlist=$HOME/start-menu/config/install_tool.list
-					backupfile=$installlist.old
-					tmpfile=/tmp/install_tool.list.tmp
+					curntlist=$HOME/start-menu/config/install-menu-list.sh
+					newlist=$curntlist.new
+					backupfile=$curntlist.old
+					tmpfile=$curntlist.tmp
+					
 					#whiptail --title "creating backup of $installlist" --msgbox "creating backup of $installlist in $backupfile." 8 78
-					cp $installlist $backupfile
+					cp $curntlist $backupfile
 					#whiptail --title "creating $tmpfile" --msgbox "creating $tmpfile containing info for $name." 8 78
-					cp $installlist $tmpfile
-					if [[ ! -z $(grep "$name" "$tmpfile") ]]; then
-					whiptail --title "Entry FOUND skipping..." --msgbox "Entry for $name FOUND skipping..." 8 78
-					else
-					source $installlist
-					number=$((number+1))
-					echo "" >> $tmpfile
-					echo "option_$number(){" >> $tmpfile
-					echo "option_number=$number" >> $tmpfile
-					echo "name=$name" >> $tmpfile
-					echo "command=$command" >> $tmpfile
-					echo "description=$description" >> $tmpfile
-					echo "packagename=$packagename" >> $tmpfile
-					echo "}" >> $tmpfile
-					echo "option_$number" >> $tmpfile
-					echo "number=$number" >> $tmpfile
-					whiptail --title "creating new $installist" --msgbox "creating new $installist from $tmpfile containing $number entries." 8 78
-					cp $tmpfile $installlist
-					fi
-
-					#whiptail --title "removing $tmpfile" --msgbox "removing $tmpfile" 8 78
-					rm $tmpfile
+					editlist=$(head -n -5 $curntlist)
+					echo $editlist > $tmpfile
+					echo '$name)' >> $tmpfile
+					echo 'name="$name"' >> $tmpfile
+					echo 'bash $HOME/start-menu/config/tools/$name/install.sh' >> $tmpfile
+					echo ';;' >> $tmpfile
+					
+					echo '*)' >> $tmpfile
+					echo 'echo "You cancelled or have finished."' >> $tmpfile
+					echo ';;' >> $tmpfile
+					echo 'esac' >> $tmpfile
+					echo 'done' >> $tmpfile
+					
+					whiptail --title "creating new $curntlist" --msgbox "creating new $curntlist." 8 78
+					cp $tmpfile $newlist
 					}
 				add_to_startlist
 				add_to_installlist
 				}
 
-
-#make_install_tools_menu(){}
-
-
 make_info
 make_start
 make_install
 make_list
-#make_install_tools_menu
 
 whiptail --title "Creation complete" --msgbox "runfile creation for $name in $conf_dir is completed." 8 78
-if (whiptail --title "Add another>" --yesno "Do you want to make another entry?" 8 78) then
+if (whiptail --title "Add another?" --yesno "Do you want to make another entry?" 8 78) then
     menu
 else
     echo "User selected No, exit status was $?."
