@@ -1,5 +1,11 @@
 # start-menu
 
+
+[![CI](https://github.com/itsdarklikehell/start-menu/actions/workflows/ci.yml/badge.svg)](https://github.com/itsdarklikehell/start-menu/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/itsdarklikehell/start-menu)](LICENSE)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+
+
 Een start-menu voor RPI om aangepaste commando's of tools van een curator lijst te installeren/starten.
 
 Installeer met:
