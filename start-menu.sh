@@ -1,18 +1,22 @@
 #!/bin/bash
-#Startup menu for RPI made by itsdarklikehell.
+# Startup menu for RPI made by itsdarklikehell.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_DIR="$SCRIPT_DIR/config"
 
 config(){
-	use_whiptail="True"
+    use_whiptail="True"
     WIP="WORK IN PROGRESS, NOT YET IMPLEMENTED."
 }
 
 disclaimer(){
-	echo "USE THIS SCRIPT WITH CARE!"
-	if (whiptail --title "Disclaimer Dialog" --yesno "Use this script with care. Continue?" 8 78) then
-	main_menu
+    echo "USE THIS SCRIPT WITH CARE!"
+    if whiptail --title "Disclaimer Dialog" --yesno "Use this script with care. Continue?" 8 78; then
+        main_menu
     else
-    echo "User selected No, exit status was $?."
-fi
+        echo "User selected No, exit status was $?"
+    fi
 }
 
 start_done(){
@@ -58,25 +62,25 @@ main_menu(){
 }
 
 option_menu(){
-bash $HOME/start-menu/config/option-menu.sh
+    bash "$CONFIG_DIR/option-menu.sh"
 }
 
 install_menu(){
-	echo "install menu"
-	choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
-	"List" "Install tools fom curated list." \
-	"Custom" "Install custom package with apt-get." 3>&1 1>&2 2>&3)
-	exitstatus=$?
-	case $choice in
-		List)
-		bash $HOME/start-menu/config/install-menu-list.sh
-        ;;
-		Custom)
-		bash $HOME/start-menu/config/install-menu-custom.sh
-		;;
-		*)
-		echo "You cancelled or have finished."
-		;;
+    echo "install menu"
+    choice=$(whiptail --title "Install Menu" --menu "Choose an option" 25 78 16 \
+    "List" "Install tools from curated list." \
+    "Custom" "Install custom package with apt-get." 3>&1 1>&2 2>&3)
+    exitstatus=$?
+    case $choice in
+        List)
+            bash "$CONFIG_DIR/install-menu-list.sh"
+            ;;
+        Custom)
+            bash "$CONFIG_DIR/install-menu-custom.sh"
+            ;;
+        *)
+            echo "You cancelled or have finished."
+            ;;
     esac
 }
 
