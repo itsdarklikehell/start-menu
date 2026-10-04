@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 	choice=$(whiptail --title "Option Menu" --menu "Choose an option" 25 78 16 \
 	"Update-System" "Update system." \
 	"Update-start-menu" "Update startup-menu." \

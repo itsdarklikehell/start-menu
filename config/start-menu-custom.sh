@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 start_done(){
 	echo "Finished starting: $choice"
 	whiptail --title " Finished Starting" --msgbox "Finished starting: $choice." 8 78

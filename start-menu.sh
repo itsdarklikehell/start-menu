@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 #Startup menu for RPI made by itsdarklikehell.
 
 config(){

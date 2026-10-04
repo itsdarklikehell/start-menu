@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 name=$(whiptail --inputbox "Please specify the NAME for the application to remove" 8 78 --title "Name" 3>&1 1>&2 2>&3)
 
 

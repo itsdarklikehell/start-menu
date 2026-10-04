@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 menu(){
 	configure(){
 		name=$(whiptail --inputbox "Please specify the NAME for the application" 8 78 Default --title "Name" 3>&1 1>&2 2>&3)

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 install_done(){
 	echo "Finished instaling: $choice"
 	whiptail --title " Finished Installing" --msgbox "Finished installing: $choice." 8 78
